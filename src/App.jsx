@@ -64,17 +64,17 @@ function App() {
             <Link
               to="/"
               onClick={cerrarMenu}
-              className="text-lg font-bold italic tracking-wide sm:text-xl"
+              className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-lg font-bold italic tracking-wide sm:static sm:translate-x-0 sm:text-xl"
             >
               R - Rosso Hnos S.A.
             </Link>
 
             <button
               type="button"
-              aria-label="Abrir menú de navegación"
+              aria-label={menuAbierto ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={menuAbierto}
               onClick={() => setMenuAbierto(!menuAbierto)}
-              className="rounded border border-red-500 px-2 py-1 text-xl leading-none sm:hidden"
+              className="ml-auto flex h-11 w-11 flex-col items-center justify-center rounded-md border border-red-500 transition hover:bg-red-600 sm:hidden"
             >
               <span className="block h-0.5 w-5 bg-white"></span>
               <span className="my-1 block h-0.5 w-5 bg-white"></span>
@@ -82,19 +82,19 @@ function App() {
             </button>
 
             <div
-              className={`${menuAbierto ? "flex" : "hidden"} absolute left-0 right-0 top-full z-10 flex-col gap-2 bg-red-700 p-3 shadow-md sm:static sm:flex sm:w-auto sm:flex-row sm:items-center sm:gap-6 sm:bg-transparent sm:p-0 sm:shadow-none`}
+              className={`${menuAbierto ? "flex" : "hidden"} absolute left-0 right-0 top-full z-10 flex-col gap-1 border-t border-red-800 bg-red-800 p-3 shadow-md sm:static sm:flex sm:w-auto sm:flex-row sm:items-center sm:gap-6 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none`}
             >
               <Link
                 to="/"
                 onClick={cerrarMenu}
-                className="text-sm font-bold transition hover:text-red-200"
+                className="w-full rounded-md px-3 py-3 text-left text-sm font-bold transition hover:bg-red-700 hover:text-red-200 sm:w-auto sm:p-0 sm:hover:bg-transparent"
               >
                 Solicitar Presupuesto
               </Link>
               <Link
                 to="/seguimiento"
                 onClick={cerrarMenu}
-                className="text-sm font-bold transition hover:text-red-200"
+                className="w-full rounded-md px-3 py-3 text-left text-sm font-bold transition hover:bg-red-700 hover:text-red-200 sm:w-auto sm:p-0 sm:hover:bg-transparent"
               >
                 Seguimiento de Pedido
               </Link>
@@ -102,7 +102,7 @@ function App() {
               <Link
                 to="/intranet"
                 onClick={cerrarMenu}
-                className="w-fit rounded border border-red-500 px-3 py-1.5 text-xs text-red-100 transition hover:bg-red-600"
+                className="w-full rounded-md border border-red-500 px-3 py-3 text-left text-xs text-red-100 transition hover:bg-red-700 sm:w-fit sm:py-1.5 sm:hover:bg-red-600"
               >
                 Acceso Empleados
               </Link>
