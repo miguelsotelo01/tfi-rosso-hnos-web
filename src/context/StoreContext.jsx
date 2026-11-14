@@ -148,7 +148,7 @@ export function StoreProvider({ children }) {
     let confirmedOrder;
     updateStore((current) => {
       const quote = current.quotes.find((item) => item.id === quoteId);
-      if (!quote) {
+      if (!quote || quote.status !== "Presupuesto generado") {
         return current;
       }
 
@@ -209,7 +209,8 @@ export function StoreProvider({ children }) {
     updateOrderStatus,
     saveProducts,
     getOrder: (id) => store.orders.find((order) => order.id === Number(id)),
-    getLatestQuote: () => store.quotes[store.quotes.length - 1],
+    getLatestQuote: () =>
+      [...store.quotes].reverse().find((quote) => quote.status === "Presupuesto generado"),
   };
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
