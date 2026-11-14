@@ -12,6 +12,7 @@ import ModuloDeposito from "./components/ModuloDeposito";
 import DespachoEntrega from "./components/DespachoEntrega";
 import SeguimientoPedido from "./components/SeguimientoPedido";
 import GestionCatalogo from "./components/GestionCatalogo";
+import { StoreProvider } from "./context/StoreContext.jsx";
 
 // Componente para simular el Panel de Acceso de Empleados
 function PanelEmpleados() {
@@ -57,6 +58,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <StoreProvider>
       <div className="min-h-screen bg-gray-100 flex flex-col">
         {/* Navbar Comercial y Limpia */}
         <nav className="bg-red-700 p-3 text-white shadow-md sm:p-4">
@@ -130,6 +132,7 @@ function App() {
           Prototipo - Rosso Hnos S.A. | Trabajo Final Integrador
         </footer>
       </div>
+      </StoreProvider>
     </BrowserRouter>
   );
 }
