@@ -1,25 +1,25 @@
 export default function ConfirmacionPedido() {
   return (
-    <div className="bg-white p-6 shadow rounded-lg max-w-3xl mx-auto border-t-4 border-red-600">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <div className="mx-auto max-w-3xl rounded-lg border-t-4 border-red-600 bg-white p-4 shadow sm:p-6">
+      <h2 className="mb-6 text-center text-xl font-bold text-gray-800 sm:text-2xl">
         Presupuesto N° 10245
       </h2>
 
       {/* Detalle Ticket */}
-      <div className="border-2 border-dashed border-gray-400 bg-yellow-50 p-6 rounded relative mb-6">
+      <div className="relative mb-6 rounded border-2 border-dashed border-gray-400 bg-yellow-50 p-4 pt-12 sm:p-6">
         <span className="absolute top-2 right-2 text-xs font-bold text-red-600 bg-red-100 px-2 py-1 rounded">
           Válido por 72 hs
         </span>
         <h3 className="font-bold text-gray-700 mb-4">Materiales Cotizados:</h3>
         <ul className="space-y-2 text-sm text-gray-600 border-b border-gray-300 pb-4 mb-4">
-          <li className="flex justify-between">
-            <span>Cemento Loma Negra x 2</span> <span>$ 10.000</span>
+          <li className="flex justify-between gap-4">
+            <span>Cemento Loma Negra x 2</span> <span className="whitespace-nowrap">$ 10.000</span>
           </li>
-          <li className="flex justify-between">
-            <span>Ladrillo Hueco x 40</span> <span>$ 20.000</span>
+          <li className="flex justify-between gap-4">
+            <span>Ladrillo Hueco x 40</span> <span className="whitespace-nowrap">$ 20.000</span>
           </li>
-          <li className="flex justify-between">
-            <span>Caño PVC 110mm x 2</span> <span>$ 25.000</span>
+          <li className="flex justify-between gap-4">
+            <span>Caño PVC 110mm x 2</span> <span className="whitespace-nowrap">$ 25.000</span>
           </li>
         </ul>
         <div className="flex justify-between font-bold text-lg text-gray-800">
@@ -28,7 +28,7 @@ export default function ConfirmacionPedido() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
         {/* Pagos */}
         <div>
           <h3 className="font-bold text-gray-700 border-b pb-2 mb-3">* Pago</h3>
@@ -71,7 +71,7 @@ export default function ConfirmacionPedido() {
 
       {/* Acción */}
       <div className="flex justify-end border-t pt-4">
-        <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded shadow transition duration-200">
+        <button className="w-full rounded bg-green-600 px-6 py-3 font-bold text-white shadow transition duration-200 hover:bg-green-700 sm:w-auto">
           Aprobar Presupuesto y Confirmar Pedido
         </button>
       </div>

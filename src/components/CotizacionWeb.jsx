@@ -53,10 +53,10 @@ export default function CotizacionWeb() {
   ];
 
   return (
-    <div className="bg-white shadow-lg rounded-xl overflow-hidden border-t-4 border-red-600 max-w-6xl mx-auto flex flex-col md:flex-row h-[80vh]">
+    <div className="mx-auto flex h-auto max-w-6xl flex-col overflow-hidden rounded-xl border-t-4 border-red-600 bg-white shadow-lg md:h-[80vh] md:flex-row">
       {/* COLUMNA IZQUIERDA: Catálogo con Scroll */}
-      <div className="w-full md:w-2/3 p-6 bg-gray-50 border-r flex flex-col">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+      <div className="flex w-full flex-col border-r bg-gray-50 p-4 sm:p-6 md:w-2/3">
+        <h2 className="mb-4 flex items-center text-lg font-bold text-gray-800 sm:text-xl">
           <svg
             className="w-5 h-5 mr-2 text-red-600"
             fill="none"
@@ -74,19 +74,19 @@ export default function CotizacionWeb() {
         </h2>
 
         {/* Contenedor scrolleable */}
-        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
+        <div className="flex-1 overflow-y-auto pr-1 sm:pr-2 custom-scrollbar">
+          <div className="grid grid-cols-2 gap-3 pb-4 sm:gap-4 lg:grid-cols-3">
             {productos.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-white border p-3 rounded-lg hover:shadow-md transition flex flex-col items-center text-center"
+                className="flex flex-col items-center rounded-lg border bg-white p-2 text-center transition hover:shadow-md sm:p-3"
               >
                 <img
                   src={prod.foto}
                   alt={prod.nombre}
-                  className="w-24 h-24 object-cover rounded-md mb-3"
+                  className="mb-3 h-20 w-20 rounded-md object-cover sm:h-24 sm:w-24"
                 />
-                <span className="font-semibold text-gray-700 text-sm h-10 line-clamp-2">
+                <span className="h-10 text-xs font-semibold text-gray-700 sm:text-sm line-clamp-2">
                   {prod.nombre}
                 </span>
                 <div className="mt-2 flex items-center bg-gray-100 rounded-md overflow-hidden border w-full">
@@ -107,9 +107,9 @@ export default function CotizacionWeb() {
       </div>
 
       {/* COLUMNA DERECHA: Datos del Cliente (Fija) */}
-      <div className="w-full md:w-1/3 p-6 bg-white flex flex-col justify-between overflow-y-auto">
+      <div className="flex w-full flex-col justify-between overflow-y-auto bg-white p-4 sm:p-6 md:w-1/3">
         <div>
-          <h2 className="text-xl font-bold text-gray-800 mb-6 border-b pb-2">
+          <h2 className="mb-6 border-b pb-2 text-lg font-bold text-gray-800 sm:text-xl">
             Finalizar Presupuesto
           </h2>
 

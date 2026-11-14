@@ -1,0 +1,26 @@
+{
+  "name": "Rosso Hnos S.A.",
+  "short_name": "Rosso Hnos",
+  "description": "Gestión de presupuestos y pedidos de Rosso Hnos S.A.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#b91c1c",
+  "background_color": "#f3f4f6",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

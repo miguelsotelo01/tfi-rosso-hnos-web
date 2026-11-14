@@ -4,13 +4,13 @@ export default function SeguimientoPedido() {
   const [buscado, setBuscado] = useState(false);
 
   return (
-    <div className="bg-white p-6 shadow-lg rounded-xl max-w-3xl mx-auto border-t-4 border-red-600">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <div className="mx-auto max-w-3xl rounded-xl border-t-4 border-red-600 bg-white p-4 shadow-lg sm:p-6">
+      <h2 className="mb-6 text-center text-xl font-bold text-gray-800 sm:text-2xl">
         Rastrea tu Pedido
       </h2>
 
       {/* Buscador */}
-      <div className="flex flex-col md:flex-row gap-4 mb-8 bg-gray-50 p-6 rounded-lg border">
+      <div className="mb-8 flex flex-col gap-3 rounded-lg border bg-gray-50 p-4 sm:gap-4 sm:p-6 md:flex-row">
         <input
           type="text"
           placeholder="Ingresa tu Código de Seguimiento (Ej: 10245)"
@@ -18,7 +18,7 @@ export default function SeguimientoPedido() {
         />
         <button
           onClick={() => setBuscado(true)}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-md shadow transition duration-200"
+          className="rounded-md bg-red-600 px-6 py-3 font-bold text-white shadow transition duration-200 hover:bg-red-700 sm:px-8"
         >
           Buscar Pedido
         </button>
@@ -26,53 +26,55 @@ export default function SeguimientoPedido() {
 
       {/* Resultados de Búsqueda */}
       {buscado && (
-        <div className="animate-fade-in-up border rounded-lg p-6 bg-white">
-          <div className="flex justify-between items-center border-b pb-4 mb-6">
+        <div className="animate-fade-in-up rounded-lg border bg-white p-4 sm:p-6">
+          <div className="mb-6 flex flex-col items-start gap-3 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-lg font-bold text-gray-800">
                 Pedido N° 10245
               </h3>
               <p className="text-sm text-gray-500">Sucursal Tucumán Centro</p>
             </div>
-            <span className="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded">
+            <span className="rounded bg-blue-100 px-3 py-1 text-center text-sm font-bold text-blue-800">
               EN PREPARACIÓN
             </span>
           </div>
 
           {/* Línea de tiempo visual */}
-          <div className="flex justify-between items-center mb-8 relative">
-            <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
-            <div className="absolute top-1/2 left-0 w-1/2 h-1 bg-green-500 -z-10 transform -translate-y-1/2"></div>
+          <div className="relative mb-8 flex flex-col gap-4 pl-10 sm:flex-row sm:items-center sm:justify-between sm:gap-0 sm:pl-0">
+            <div className="absolute bottom-4 left-4 top-4 w-1 bg-gray-200 sm:hidden"></div>
+            <div className="absolute left-4 top-4 h-1/2 w-1 bg-green-500 sm:hidden"></div>
+            <div className="absolute left-0 top-1/2 hidden h-1 w-full -translate-y-1/2 transform bg-gray-200 sm:block"></div>
+            <div className="absolute left-0 top-1/2 hidden h-1 w-1/2 -translate-y-1/2 transform bg-green-500 sm:block"></div>
 
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center font-bold mb-2 shadow">
+            <div className="flex items-center gap-3 sm:flex-col">
+              <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-500 font-bold text-white shadow">
                 ✓
               </div>
-              <span className="text-xs font-semibold text-gray-600">
+              <span className="text-xs font-semibold text-gray-600 sm:mt-2">
                 Confirmado
               </span>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold mb-2 shadow animate-pulse">
+            <div className="flex items-center gap-3 sm:flex-col">
+              <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500 font-bold text-white shadow animate-pulse">
                 2
               </div>
-              <span className="text-xs font-bold text-blue-600">
+              <span className="text-xs font-bold text-blue-600 sm:mt-2">
                 En Preparación
               </span>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-bold mb-2">
+            <div className="flex items-center gap-3 sm:flex-col">
+              <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-300 font-bold text-gray-500">
                 3
               </div>
-              <span className="text-xs font-semibold text-gray-400">
+              <span className="text-xs font-semibold text-gray-400 sm:mt-2">
                 Listo para Retiro
               </span>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center font-bold mb-2">
+            <div className="flex items-center gap-3 sm:flex-col">
+              <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-300 font-bold text-gray-500">
                 4
               </div>
-              <span className="text-xs font-semibold text-gray-400">
+              <span className="text-xs font-semibold text-gray-400 sm:mt-2">
                 Entregado
               </span>
             </div>

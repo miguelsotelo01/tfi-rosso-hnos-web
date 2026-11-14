@@ -4,16 +4,16 @@ export default function DespachoEntrega() {
   const [buscado, setBuscado] = useState(false);
 
   return (
-    <div className="bg-white p-6 shadow rounded-lg max-w-3xl mx-auto border-t-4 border-gray-800">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-        <span className="bg-gray-800 text-white p-2 rounded mr-3 text-sm">
+    <div className="mx-auto max-w-3xl rounded-lg border-t-4 border-gray-800 bg-white p-4 shadow sm:p-6">
+      <h2 className="mb-6 flex flex-col items-start gap-2 text-xl font-bold text-gray-800 sm:flex-row sm:items-center sm:text-2xl">
+        <span className="rounded bg-gray-800 p-2 text-sm text-white sm:mr-3">
           LOGÍSTICA
         </span>
         Despacho y Entrega de Materiales
       </h2>
 
       {/* Buscador */}
-      <div className="flex gap-4 mb-8 bg-gray-50 p-4 rounded border">
+      <div className="mb-8 flex flex-col gap-3 rounded border bg-gray-50 p-4 sm:flex-row sm:gap-4">
         <input
           type="text"
           placeholder="Ingrese Código de Seguimiento, N° Remito o DNI"
@@ -22,7 +22,7 @@ export default function DespachoEntrega() {
         />
         <button
           onClick={() => setBuscado(true)}
-          className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded shadow"
+          className="rounded bg-gray-800 px-6 py-2 font-bold text-white shadow hover:bg-gray-900"
         >
           Buscar
         </button>
@@ -35,7 +35,7 @@ export default function DespachoEntrega() {
             Detalle del Pedido a Entregar:
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-blue-50 border border-blue-200 p-4 rounded relative">
+          <div className="relative mb-6 grid grid-cols-1 gap-4 rounded border border-blue-200 bg-blue-50 p-4 md:grid-cols-2">
             <div>
               <p className="font-bold text-xl text-blue-900">Pedido N° 10245</p>
               <p className="text-sm mt-1">
@@ -71,7 +71,7 @@ export default function DespachoEntrega() {
                   "¡Entrega registrada exitosamente! Stock descontado de la Base de Datos.",
                 )
               }
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow text-lg transition duration-200"
+              className="w-full rounded bg-red-600 px-8 py-3 text-lg font-bold text-white shadow transition duration-200 hover:bg-red-700 sm:w-auto"
             >
               Confirmar Entrega y Descontar Stock
             </button>
