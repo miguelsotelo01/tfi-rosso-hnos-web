@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Link,
+  Navigate,
   useNavigate,
 } from "react-router-dom";
 import { useState } from "react";
@@ -13,10 +14,17 @@ import DespachoEntrega from "./components/DespachoEntrega";
 import SeguimientoPedido from "./components/SeguimientoPedido";
 import GestionCatalogo from "./components/GestionCatalogo";
 import { StoreProvider } from "./context/StoreContext.jsx";
+import { useStore } from "./context/useStore";
 
 // Componente para simular el Panel de Acceso de Empleados
 function PanelEmpleados() {
   const navigate = useNavigate();
+  const { setSessionRole, sessionRole, quotes } = useStore();
+  const enterModule = (role, path) => {
+    setSessionRole(role);
+    navigate(path);
+  };
+
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center">
       <div className="w-full max-w-md rounded-xl border-t-4 border-gray-800 bg-white p-5 text-center shadow-lg sm:p-8">
@@ -28,27 +36,52 @@ function PanelEmpleados() {
         </p>
         <div className="space-y-3 sm:space-y-4">
           <button
-            onClick={() => navigate("/deposito")}
+            onClick={() => enterModule("Personal de Depósito", "/deposito")}
             className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded transition"
           >
             Gestión de Depósito
           </button>
           <button
-            onClick={() => navigate("/despacho")}
+            onClick={() => enterModule("Personal de Logística", "/despacho")}
             className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded transition"
           >
             Despacho y Logística
           </button>
           <button
-            onClick={() => navigate("/gestion-catalogo")}
+            onClick={() => enterModule("Administrador", "/gestion-catalogo")}
             className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded transition"
           >
             Gestión de Catálogo
           </button>
         </div>
+        {sessionRole && (
+          <p className="mt-6 text-xs text-gray-500">
+            Rol activo: <strong>{sessionRole}</strong>
+          </p>
+        )}
+        {quotes.length > 0 && (
+          <div className="mt-6 border-t pt-4 text-left">
+            <h3 className="mb-2 text-sm font-bold text-gray-700">
+              Historial de presupuestos
+            </h3>
+            <div className="max-h-32 space-y-1 overflow-y-auto text-xs text-gray-600">
+              {[...quotes].reverse().map((quote) => (
+                <p key={quote.id} className="flex justify-between gap-2">
+                  <span>#{quote.number} · {quote.customer.name || "Sin nombre"}</span>
+                  <span className="font-semibold">{quote.status}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
+}
+
+function ProtectedRoute({ allowedRole, children }) {
+  const { sessionRole } = useStore();
+  return sessionRole === allowedRole ? children : <Navigate to="/intranet" replace />;
 }
 
 function App() {
@@ -122,9 +155,30 @@ function App() {
             
             {/* Rutas Privadas (Empleados) */}
             <Route path="/intranet" element={<PanelEmpleados />} />
-            <Route path="/deposito" element={<ModuloDeposito />} />
-            <Route path="/despacho" element={<DespachoEntrega />} />
-            <Route path="/gestion-catalogo" element={<GestionCatalogo />} />
+            <Route
+              path="/deposito"
+              element={
+                <ProtectedRoute allowedRole="Personal de Depósito">
+                  <ModuloDeposito />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/despacho"
+              element={
+                <ProtectedRoute allowedRole="Personal de Logística">
+                  <DespachoEntrega />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/gestion-catalogo"
+              element={
+                <ProtectedRoute allowedRole="Administrador">
+                  <GestionCatalogo />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
         

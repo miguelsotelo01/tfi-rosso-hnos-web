@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useStore } from "../context/useStore";
 
 function productStatus(product) {
+  if (!product.active) return "Inactivo";
   return product.stock > 0 ? "Activo" : "Sin Stock";
 }
 
 export default function GestionCatalogo() {
-  const { products, saveProducts } = useStore();
+  const { products, saveProducts, exportData, importData } = useStore();
   const [draftProducts, setDraftProducts] = useState(products);
   const [mostrarNuevo, setMostrarNuevo] = useState(false);
   const [newProduct, setNewProduct] = useState({
@@ -16,6 +17,7 @@ export default function GestionCatalogo() {
     stock: "",
     image: "",
   });
+  const importInputRef = useRef(null);
 
   const updateProduct = (id, field, value) => {
     setDraftProducts((current) =>
@@ -62,6 +64,30 @@ export default function GestionCatalogo() {
     setMostrarNuevo(false);
   };
 
+  const handleExport = () => {
+    const blob = new Blob([exportData()], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `respaldo-rosso-hnos-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    try {
+      importData(await file.text());
+      alert("Respaldo importado correctamente.");
+      window.location.reload();
+    } catch (error) {
+      alert(error.message || "No se pudo importar el respaldo.");
+    } finally {
+      event.target.value = "";
+    }
+  };
+
   return (
     <div className="mx-auto max-w-5xl rounded-xl border-t-4 border-gray-800 bg-white p-4 shadow-lg lg:max-w-6xl sm:p-6">
       <h2 className="mb-6 flex flex-col items-start gap-2 text-xl font-bold text-gray-800 sm:flex-row sm:items-center sm:text-2xl">
@@ -77,6 +103,7 @@ export default function GestionCatalogo() {
             <tr>
               <th className="border-b px-4 py-3">Código</th>
               <th className="border-b px-4 py-3">Producto</th>
+              <th className="border-b px-4 py-3">Imagen</th>
               <th className="w-32 border-b px-4 py-3">Precio Unit. ($)</th>
               <th className="w-32 border-b px-4 py-3">Stock Físico</th>
               <th className="border-b px-4 py-3 text-center">Estado</th>
@@ -85,8 +112,33 @@ export default function GestionCatalogo() {
           <tbody className="text-sm text-gray-700">
             {draftProducts.map((product) => (
               <tr key={product.id} className={`border-b hover:bg-gray-50 ${product.stock === 0 ? "opacity-50" : ""}`}>
-                <td className="px-4 py-3 font-mono">{product.code}</td>
-                <td className="px-4 py-3 font-semibold">{product.name}</td>
+                <td className="px-4 py-3">
+                  <input
+                    value={product.code}
+                    onChange={(event) =>
+                      updateProduct(product.id, "code", event.target.value.toUpperCase())
+                    }
+                    className="w-24 rounded border p-1 font-mono"
+                  />
+                </td>
+                <td className="px-4 py-3">
+                  <input
+                    value={product.name}
+                    onChange={(event) =>
+                      updateProduct(product.id, "name", event.target.value)
+                    }
+                    className="w-full rounded border p-1 font-semibold"
+                  />
+                </td>
+                <td className="px-4 py-3">
+                  <input
+                    value={product.image}
+                    onChange={(event) =>
+                      updateProduct(product.id, "image", event.target.value)
+                    }
+                    className="w-40 rounded border p-1 text-xs"
+                  />
+                </td>
                 <td className="px-4 py-3">
                   <input
                     type="number"
@@ -120,12 +172,31 @@ export default function GestionCatalogo() {
           <article key={product.id} className={`rounded-lg border p-3 ${product.stock === 0 ? "opacity-50" : ""}`}>
             <div className="mb-3 flex items-start justify-between gap-3">
               <div>
-                <p className="font-mono text-xs text-gray-500">{product.code}</p>
-                <p className="font-semibold text-gray-700">{product.name}</p>
+                <input
+                  value={product.code}
+                  onChange={(event) =>
+                    updateProduct(product.id, "code", event.target.value.toUpperCase())
+                  }
+                  className="w-24 rounded border p-1 font-mono text-xs"
+                />
+                <input
+                  value={product.name}
+                  onChange={(event) =>
+                    updateProduct(product.id, "name", event.target.value)
+                  }
+                  className="mt-1 w-full rounded border p-1 font-semibold text-gray-700"
+                />
               </div>
-              <span className={`rounded px-2 py-1 text-xs font-bold ${product.stock > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
-                {productStatus(product)}
-              </span>
+              <label className="flex items-center gap-1 text-xs">
+                <input
+                  type="checkbox"
+                  checked={product.active}
+                  onChange={(event) =>
+                    updateProduct(product.id, "active", event.target.checked)
+                  }
+                />
+                Activo
+              </label>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <label className="text-xs font-bold text-gray-600">
@@ -148,16 +219,25 @@ export default function GestionCatalogo() {
                 />
               </label>
             </div>
+            <input
+              value={product.image}
+              onChange={(event) =>
+                updateProduct(product.id, "image", event.target.value)
+              }
+              placeholder="URL de imagen"
+              className="mt-3 w-full rounded border p-2 text-xs"
+            />
           </article>
         ))}
       </div>
 
       {mostrarNuevo && (
-        <form onSubmit={handleAddProduct} className="mb-6 grid grid-cols-1 gap-3 rounded border bg-gray-50 p-4 md:grid-cols-5">
+        <form onSubmit={handleAddProduct} className="mb-6 grid grid-cols-1 gap-3 rounded border bg-gray-50 p-4 md:grid-cols-6">
           <input name="code" placeholder="Código" value={newProduct.code} onChange={handleNewProductChange} className="rounded border p-2" />
           <input name="name" placeholder="Nombre" value={newProduct.name} onChange={handleNewProductChange} className="rounded border p-2" />
           <input name="price" type="number" placeholder="Precio" value={newProduct.price} onChange={handleNewProductChange} className="rounded border p-2" />
           <input name="stock" type="number" placeholder="Stock" value={newProduct.stock} onChange={handleNewProductChange} className="rounded border p-2" />
+          <input name="image" type="url" placeholder="URL de imagen (opcional)" value={newProduct.image} onChange={handleNewProductChange} className="rounded border p-2" />
           <button type="submit" className="rounded bg-green-600 px-4 py-2 font-bold text-white hover:bg-green-700">
             Agregar
           </button>
@@ -169,6 +249,27 @@ export default function GestionCatalogo() {
           * Los campos resaltados en amarillo permiten edición directa.
         </span>
         <div className="flex flex-col gap-3 sm:flex-row sm:space-x-3 sm:gap-0">
+          <input
+            ref={importInputRef}
+            type="file"
+            accept="application/json"
+            onChange={handleImport}
+            className="hidden"
+          />
+          <button
+            type="button"
+            onClick={handleExport}
+            className="rounded bg-gray-100 px-4 py-2 font-bold text-gray-700 shadow transition hover:bg-gray-200"
+          >
+            Exportar respaldo
+          </button>
+          <button
+            type="button"
+            onClick={() => importInputRef.current?.click()}
+            className="rounded bg-gray-100 px-4 py-2 font-bold text-gray-700 shadow transition hover:bg-gray-200"
+          >
+            Importar respaldo
+          </button>
           <button
             type="button"
             onClick={() => setMostrarNuevo(!mostrarNuevo)}

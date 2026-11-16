@@ -4,7 +4,7 @@ import { useStore } from "../context/useStore";
 
 export default function ConfirmacionPedido() {
   const navigate = useNavigate();
-  const { getLatestQuote, confirmQuote } = useStore();
+  const { getLatestQuote, confirmQuote, cancelQuote } = useStore();
   const quote = getLatestQuote();
   const [mostrarTarjeta, setMostrarTarjeta] = useState(false);
   const [payment, setPayment] = useState({
@@ -44,10 +44,33 @@ export default function ConfirmacionPedido() {
       return;
     }
 
-    const order = confirmQuote(quote.id, hasPaymentData ? payment : null, delivery);
-    if (order) {
-      navigate(`/seguimiento?pedido=${order.number}`);
+    if (hasPaymentData) {
+      const cardNumber = payment.number.replace(/\s/g, "");
+      if (!/^\d{13,19}$/.test(cardNumber) || !passesLuhn(cardNumber)) {
+        alert("Ingresá un número de tarjeta válido.");
+        return;
+      }
+      if (!/^\d{2}\/\d{2}$/.test(payment.expiry) || !/^\d{3,4}$/.test(payment.securityCode)) {
+        alert("Revisá el vencimiento y el código de seguridad de la tarjeta.");
+        return;
+      }
     }
+
+    const result = confirmQuote(
+      quote.id,
+      hasPaymentData ? { ...payment, number: payment.number.replace(/\s/g, "") } : null,
+      delivery,
+    );
+    if (result.order) {
+      navigate(`/seguimiento?pedido=${result.order.number}`);
+    } else if (result.error) {
+      alert(result.error);
+    }
+  };
+
+  const handleCancel = () => {
+    cancelQuote(quote.id);
+    navigate("/");
   };
 
   return (
@@ -161,6 +184,13 @@ export default function ConfirmacionPedido() {
 
         <div className="flex justify-end border-t pt-4">
           <button
+            type="button"
+            onClick={handleCancel}
+            className="mr-3 rounded bg-gray-200 px-6 py-3 font-bold text-gray-800 shadow transition hover:bg-gray-300"
+          >
+            Cancelar presupuesto
+          </button>
+          <button
             type="submit"
             className="w-full rounded bg-green-600 px-6 py-3 font-bold text-white shadow transition duration-200 hover:bg-green-700 sm:w-auto"
           >
@@ -170,4 +200,19 @@ export default function ConfirmacionPedido() {
       </form>
     </div>
   );
+}
+
+function passesLuhn(number) {
+  let sum = 0;
+  let shouldDouble = false;
+  for (let index = number.length - 1; index >= 0; index -= 1) {
+    let digit = Number(number[index]);
+    if (shouldDouble) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+    shouldDouble = !shouldDouble;
+  }
+  return sum % 10 === 0;
 }
