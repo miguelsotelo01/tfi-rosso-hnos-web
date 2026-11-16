@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { StoreContext } from "./StoreContext";
+import { createLocalStorageStore } from "../services/persistence/localStorageStore";
 
 const STORAGE_KEY = "rosso-hnos-store";
 const SESSION_ROLE_KEY = "rosso-hnos-session-role";
@@ -103,31 +104,28 @@ const initialStore = {
   nextQuoteNumber: 10245,
 };
 
-function readStore() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return initialStore;
-    const parsed = JSON.parse(stored);
-    return {
-      ...initialStore,
-      ...parsed,
-      products: Array.isArray(parsed.products)
-        ? parsed.products.map((product) => ({
-            ...product,
-            reservedStock: product.reservedStock || 0,
-            active: product.active !== false,
-          }))
-        : initialStore.products,
-      quotes: Array.isArray(parsed.quotes) ? parsed.quotes : [],
-      orders: Array.isArray(parsed.orders) ? parsed.orders : [],
-    };
-  } catch {
-    return initialStore;
-  }
-}
+const storePersistence = createLocalStorageStore({
+  key: STORAGE_KEY,
+  fallback: initialStore,
+});
 
-function saveStore(store) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+function readStore() {
+  const loaded = storePersistence.load();
+  const parsed =
+    loaded && typeof loaded === "object" ? loaded : initialStore;
+  return {
+    ...initialStore,
+    ...parsed,
+    products: Array.isArray(parsed.products)
+      ? parsed.products.map((product) => ({
+          ...product,
+          reservedStock: product.reservedStock || 0,
+          active: product.active !== false,
+        }))
+      : initialStore.products,
+    quotes: Array.isArray(parsed.quotes) ? parsed.quotes : [],
+    orders: Array.isArray(parsed.orders) ? parsed.orders : [],
+  };
 }
 
 function isQuoteExpired(quote) {
@@ -149,7 +147,7 @@ export function StoreProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    saveStore(store);
+    storePersistence.save(store);
   }, [store]);
 
   const updateStore = (updater) => {
@@ -334,7 +332,7 @@ export function StoreProvider({ children }) {
       ...imported,
       products: imported.products,
     };
-    saveStore(nextStore);
+    storePersistence.save(nextStore);
     setStore(nextStore);
   };
 
