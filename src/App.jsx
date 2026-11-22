@@ -6,7 +6,7 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CotizacionWeb from "./components/CotizacionWeb";
 import ConfirmacionPedido from "./components/ConfirmacionPedido";
 import ModuloDeposito from "./components/ModuloDeposito";
@@ -93,6 +93,14 @@ function ProtectedRoute({ allowedRole, children }) {
 
 function App() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("tema") === "dark",
+  );
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("tema", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   const cerrarMenu = () => setMenuAbierto(false);
 
@@ -152,6 +160,18 @@ function App() {
                 >
                   Acceso Empleados
                 </Link>
+                {/* Botón de Modo Claro / Oscuro */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDarkMode(!darkMode);
+                    cerrarMenu();
+                  }}
+                  title="Cambiar tema claro/oscuro"
+                  className="w-full rounded-md border border-red-500 px-3 py-3 text-left text-xs text-red-100 transition hover:bg-red-700 sm:w-fit sm:py-1.5 sm:hover:bg-red-600"
+                >
+                  {darkMode ? "☀️ Claro" : "🌙 Oscuro"}
+                </button>
               </div>
             </div>
           </nav>
