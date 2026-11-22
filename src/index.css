@@ -1,1 +1,135 @@
 @import "tailwindcss";
+
+/* =========================================================
+   MODO OSCURO GLOBAL (Sin alterar text-white ni el header rojo)
+   ========================================================= */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Fondos principales y tarjetas */
+html.dark .bg-gray-100 {
+  background-color: #090d16 !important;
+}
+
+html.dark .bg-white {
+  background-color: #131b2e !important;
+}
+
+html.dark .bg-gray-50 {
+  background-color: #1a243b !important;
+}
+
+/* Barra superior y menú móvil: reemplaza el rojo/naranja por oscuro neutro */
+html.dark nav.bg-red-700,
+html.dark .bg-red-800 {
+  background-color: #0f172a !important;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Botones oscuros (Portal Interno, barras y footer) */
+html.dark .bg-gray-800 {
+  background-color: #1e293b !important;
+  border: 1px solid #334155;
+}
+
+html.dark .bg-gray-800:hover {
+  background-color: #283548 !important;
+}
+
+html.dark .bg-gray-900 {
+  background-color: #0b1120 !important;
+}
+
+/* Textos claros y legibles en toda la app */
+html.dark .text-white {
+  color: #ffffff !important;
+}
+
+html.dark .text-gray-900,
+html.dark .text-gray-800 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-gray-500,
+html.dark .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-red-100,
+html.dark .text-red-200 {
+  color: #f1f5f9 !important;
+}
+
+/* Acentos: reemplaza rojos/naranjas por azul limpio en modo oscuro */
+html.dark .text-red-600,
+html.dark .text-red-700,
+html.dark .text-red-800 {
+  color: #60a5fa !important;
+}
+
+html.dark button.bg-red-600,
+html.dark button.bg-red-700 {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+html.dark button.bg-red-600:hover,
+html.dark button.bg-red-700:hover {
+  background-color: #1d4ed8 !important;
+}
+
+/* Bordes, contornos de selección e inputs */
+html.dark .border-gray-200,
+html.dark .border-gray-300,
+html.dark .border-b,
+html.dark .border-t {
+  border-color: #293548 !important;
+}
+
+html.dark .border-red-500,
+html.dark .border-red-600,
+html.dark .border-red-700,
+html.dark .border-gray-800 {
+  border-color: #3b82f6 !important;
+}
+
+html.dark .ring-red-600 {
+  --tw-ring-color: #3b82f6 !important;
+}
+
+html.dark [class*="bg-red-50"] {
+  background-color: rgba(37, 99, 235, 0.14) !important;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+/* Badges de estado (Seguimiento y Depósito) */
+html.dark .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+html.dark .text-blue-800,
+html.dark .text-blue-600 {
+  color: #93c5fd !important;
+}
+
+html.dark .bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+html.dark .text-green-800 {
+  color: #86efac !important;
+}
