@@ -7,102 +7,255 @@ const FASES = {
     titulo: "1. Fase de Inicio",
     expositor: "Bloque 1",
     subtitulo:
-      "Relevamiento organizacional, alcance, reglas de negocio y casos de uso",
+      "Relevamiento organizacional, alcance, reglas de negocio, casos de uso y prototipos",
     temas: [
       {
-        nombre: "Empresa y BPD (As-Is)",
+        nombre: "Empresa y Estructura",
         bloques: [
           {
-            subtitulo: "Organización y Contexto",
+            subtitulo: "Organización y Unidad Rosso Mix",
             items: [
-              "Rosso Hnos. S.A.: comercialización de materiales de construcción (sucursales en Tucumán y Salta) y unidad Rosso Mix.",
-              "Áreas involucradas: Ventas/Mostrador, Depósito/Almacén, Logística y Administración.",
+              "Rosso Hnos. S.A.: comercialización de materiales de construcción (sucursales en Tucumán y Salta) y unidad productiva Rosso Mix.",
+              "Atiende tanto a clientes particulares en mostrador como a profesionales y empresas constructoras.",
             ],
             detalle: [
-              "Estructura comercial: atiende tanto a clientes particulares en mostrador como a profesionales y empresas constructoras de gran volumen.",
               "Unidad Rosso Mix: división especializada en producción y distribución de hormigón elaborado.",
               "Fuentes del relevamiento: entrevistas semiestructuradas a Encargado de Depósito, Personal de Ventas y Fletero externo, junto a registros históricos de inventario.",
+              "Crecimiento operativo: la expansión comercial en ambas provincias volvió insuficiente la gestión manual y telefónica entre sectores.",
             ],
           },
           {
-            subtitulo: "Problemática Actual (As-Is)",
+            subtitulo: "Estructura Organizativa General",
             items: [
-              "Cotizaciones manuales y consultas informales por teléfono o WhatsApp con demoras de respuesta.",
-              "Falta de visibilidad en tiempo real del stock entre Ventas y Depósito, generando quiebres y reprocesos.",
+              "Estructura jerárquica-funcional de 5 niveles encabezada por la Gerencia General.",
+              "Departamentalización funcional agrupada en Comercial, Producción Rosso Mix, RR.HH. y Administración y Finanzas.",
             ],
             detalle: [
-              "Cuello de botella en mostrador: el vendedor debe consultar físicamente o por teléfono la disponibilidad en almacén antes de emitir un presupuesto.",
-              "Desincronización de inventario: al no existir reserva lógica, dos vendedores pueden comprometer el mismo lote de material crítico.",
-              "Impacto económico: pérdida de presupuestos por lentitud de respuesta y demoras en el despacho hacia obra.",
+              "Permite visualizar la cadena de mando completa de la empresa antes de delimitar el alcance del sistema.",
+              "La división por funciones facilita asignar responsabilidades claras en cada etapa del circuito comercial, de almacenamiento y de logística.",
             ],
           },
         ],
-        imagen: "/diagramas/bpd.png",
-        pieImagen: "Diagrama de Procesos de Negocio Actuales (BPD)",
+        imagenes: [
+          {
+            src: "/diagramas/organigrama-general.png",
+            pie: "Organigrama General de Rosso Hnos. S.A.",
+          },
+        ],
       },
       {
-        nombre: "Visión, Alcance y Reglas",
+        nombre: "Áreas Afectadas",
         bloques: [
           {
-            subtitulo: "Alcance del Sistema (To-Be)",
+            subtitulo: "Áreas Directas (8 Sectores)",
             items: [
-              "Incluye: catálogo web, cotización autogestionada, reserva lógica de stock, preparación en depósito y despacho.",
-              "Excluye: contabilidad general, gestión de compras a proveedores y logística interna de fleteros externos.",
+              "Comercial: Ventas Mayoristas, Ventas Minoristas y Atención al Cliente.",
+              "Operaciones y Soporte: Almacén e Inventario, Transporte y Entregas, Programación de Rutas y Sistemas.",
             ],
             detalle: [
-              "Frontera del sistema: cubre desde que el cliente arma su presupuesto en la web hasta que el operario emite el remito y descuenta el stock físico en despacho.",
-              "Sistemas fuera de alcance: liquidación de sueldos, balances contables (ERP administrativo) y seguimiento GPS de transportistas terceros.",
-              "Seguridad de acceso: la autenticación de empleados en Intranet se establece como requisito no funcional en la Especificación Complementaria.",
+              "Son las unidades organizacionales que operan diariamente el circuito de cotización, reserva lógica, preparación en depósito y despacho.",
+              "Sobre estas áreas impacta directamente la automatización del portal web público y la intranet operativa.",
+            ],
+          },
+          {
+            subtitulo: "Áreas Indirectas (3 Sectores)",
+            items: [
+              "Administración y Finanzas: Contabilidad, Tesorería y Compras.",
+              "Reciben impacto informativo para control de comprobantes, cobranzas y reposición de stock.",
+            ],
+            detalle: [
+              "Contabilidad y Tesorería validan el respaldo financiero y la facturación de las operaciones aprobadas.",
+              "Compras utiliza la información de rotación de materiales y quiebres de inventario para planificar el reabastecimiento a proveedores.",
+            ],
+          },
+        ],
+        imagenes: [
+          {
+            src: "/diagramas/organigrama-afectadas.jpg",
+            pie: "Organigrama – Áreas Involucradas en el Análisis",
+          },
+        ],
+      },
+      {
+        nombre: "Procesos Actuales (BPD)",
+        bloques: [
+          {
+            subtitulo: "Circuito Operativo As-Is",
+            items: [
+              "Descompuesto en 5 procesos: Solicitud de Cotización, Verificación de Stock, Presupuesto, Registro/Preparación y Retiro/Entrega.",
+              "Participantes: Pool externo CLIENTE y Pool interno ROSSO MATERIALES (carriles VENTAS y DEPÓSITO).",
+            ],
+            detalle: [
+              "Compuertas exclusivas (X): evalúan disponibilidad de stock en Ventas y aprobación del presupuesto en Cliente.",
+              "Artefacto Base de Datos: recién al aprobarse la compra Ventas registra formalmente el pedido en el sistema actual.",
+            ],
+          },
+          {
+            subtitulo: "Cuellos de Botella Detectados",
+            items: [
+              "Cotizaciones manuales y consultas informales por teléfono o WhatsApp con demoras en horarios pico.",
+              "Desconexión física entre Ventas y Depósito, generando errores de stock y doble triangulación de avisos.",
+            ],
+            detalle: [
+              "Cada cotización obliga a detener la atención en mostrador para consultar disponibilidad física al almacén.",
+              "Al no existir reserva lógica de inventario, dos vendedores pueden comprometer el mismo lote de material crítico.",
+            ],
+          },
+        ],
+        imagenes: [
+          {
+            src: "/diagramas/bpd.png",
+            pie: "Diagrama de Procesos de Negocio Actuales (BPD)",
+          },
+        ],
+      },
+      {
+        nombre: "Alcance y Reglas (Venn)",
+        bloques: [
+          {
+            subtitulo: "Límite y Frontera del Sistema",
+            items: [
+              "Dentro del límite: catálogo web, cotización autogestionada, reserva lógica de stock, preparación en depósito y logística interna.",
+              "En el ambiente (fuera): proveedores de materiales, contabilidad profunda y fleteros externos contratados por el cliente.",
+            ],
+            detalle: [
+              "Aclaración clave: el departamento interno de Transporte y Programación de Rutas pertenece a la empresa, mientras que el fletero externo solo presenta el comprobante al retirar.",
+              "La seguridad y autenticación de empleados en Intranet se contempla como requisito no funcional en la Especificación Complementaria.",
             ],
           },
           {
             subtitulo: "Reglas de Negocio Clave",
             items: [
               "RN01: Todo presupuesto web tiene una validez de 72 horas corridas con reserva temporal de stock.",
-              "RN02: Modalidades de entrega diferenciadas entre Retiro Personal en sucursal y Envío por Fletero Externo.",
+              "RN02: Modalidades diferenciadas entre Retiro Personal en sucursal y Envío por Fletero Externo.",
               "RN03: Validación obligatoria de documentación comercial aprobada antes de confirmar el despacho.",
             ],
             detalle: [
-              "Justificación de RN01 (72 hs): protege el inventario frente a presupuestos abandonados; vencido el plazo, el sistema libera el stock automáticamente.",
-              "Justificación de RN02: si retira un fletero externo contratado por el cliente, el sistema registra los datos del transportista y patente para autorizar la carga.",
+              "Justificación de RN01 (72 hs): protege el inventario frente a presupuestos abandonados; vencido el plazo, el stock se libera automáticamente.",
+              "Justificación de RN02: si retira un fletero externo, se registran datos del transportista y patente para autorizar la carga.",
               "Justificación de RN03: ningún material sale del depósito sin comprobante/remito validado en el módulo de despacho.",
             ],
           },
         ],
-        imagen: null,
+        imagenes: [
+          {
+            src: "/diagramas/venn.jpg",
+            pie: "Diagrama de Venn – Límite y Alcance del Sistema",
+          },
+        ],
       },
       {
         nombre: "Casos de Uso (CU 1–6)",
         bloques: [
           {
-            subtitulo: "Portal Público (Cliente)",
+            subtitulo: "CU1 – Solicitar Cotización Web",
             items: [
-              "CU1 – Solicitar Cotización Web: selección de materiales, cantidades, datos y sucursal.",
-              "CU2 – Aprobar Presupuesto y Registrar Pedido: confirmación y elección de retiro/envío.",
-              "CU5 – Consultar Estado de Pedido: seguimiento en línea mediante código.",
+              "Actor Principal: Cliente (Portal Público).",
+              "Precondición: Acceso web activo y catálogo/precios cargados en Inventario.",
+              "Postcondición: Se emite Presupuesto Web preliminar con validez de 72 horas.",
             ],
             detalle: [
-              "Actor principal: Cliente (acceso público sin fricción de registro previo para agilizar cotizaciones).",
-              "Flujo CU1 → CU2: el presupuesto generado en CU1 devuelve un código único y precio congelado por 72 hs; al aprobarlo en CU2, pasa de Cotización a Pedido confirmado.",
-              "Trazabilidad en CU5: reduce las llamadas telefónicas al corralón permitiendo ver en tiempo real si el pedido está Confirmado, En Preparación o Listo para Retiro.",
+              "Escenario de éxito: 1) Cliente navega catálogo y selecciona materiales/cantidades; 2) Ingresa datos (Nombre, CUIT/DNI, Teléfono, Email) y sucursal; 3) Sistema consulta y valida stock físico; 4) Calcula precios totales y emite presupuesto.",
+              "Extensiones: 4a. Falta de stock físico (informa indisponibilidad y no permite presupuestar ese ítem). Falla de conectividad/energía: conserva lo seleccionado y retoma al restablecerse.",
+              "Requisitos y Tecnología: Alta concurrencia de clientes simultáneos sin demoras. Frontend Web responsivo, Backend y BD de inventario en tiempo real.",
             ],
           },
           {
-            subtitulo: "Intranet Operativa (Empleados)",
+            subtitulo: "CU2 – Aprobar Presupuesto y Registrar Pedido",
             items: [
-              'CU3 – Gestionar Preparación en Depósito: picking y cambio a "Listo para Retiro".',
-              "CU4 – Validar y Registrar Despacho: entrega final y descuento definitivo de stock.",
-              "CU6 – Gestionar Catálogo e Inventario: actualización de precios y existencias.",
+              "Actor Principal: Cliente (Autogestión).",
+              "Precondición: Existe un presupuesto web vigente (dentro de las 72 horas).",
+              "Postcondición: Pedido en estado 'Confirmado' con reserva lógica sobre el stock.",
             ],
             detalle: [
-              "Actores internos: Personal de Depósito (opera CU3 y CU4) y Administrador / Ventas (opera CU6).",
-              'Control de stock en dos pasos: en CU2 se pasa stock de "Disponible" a "Reservado", y recién en CU4 (despacho efectivo) se descuenta definitivamente del inventario.',
-              "Especificación completa: los 6 casos cuentan con precondiciones, postcondiciones, flujo normal, extensiones y prototipos no operacionales.",
+              "Escenario de éxito: 1) Cliente aprueba cotización; 2) Sistema solicita modalidad de entrega y datos de pago; 3) Cliente elige Retiro Personal o Fletero Externo e ingresa pago; 4) Sistema reserva lógicamente el stock; 5) Emite Orden de Pedido con código de seguimiento.",
+              "Extensiones: 1a. Presupuesto vencido (> 72 hs): exige generar nueva cotización. Falla de conectividad/energía: conserva selección.",
+              "Requisitos y Tecnología: Confiabilidad transaccional (ACID) para evitar sobreventas concurrentes.",
+            ],
+          },
+          {
+            subtitulo: "CU3 – Gestionar Preparación en Depósito",
+            items: [
+              "Actor Principal: Personal de Depósito (Intranet).",
+              "Precondición: Existe al menos un pedido en estado 'Confirmado' en la sucursal.",
+              "Postcondición: Pedido pasa a 'Listo para Retiro' y se emite Ficha de Preparación.",
+            ],
+            detalle: [
+              "Escenario de éxito: 1) Operario consulta pedidos pendientes; 2) Sistema lista pedidos 'Confirmados'; 3) Operario inicia preparación; 4) Sistema actualiza a 'En Preparación'; 5) Operario finaliza picking y marca 'Listo para Retiro'; 6) Sistema genera Ficha de Preparación.",
+              "Extensiones: 3a. Diferencia de inventario físico (daños o faltantes): operario notifica irregularidad pausando el pedido.",
+              "Requisitos y Tecnología: Interfaz operativa simplificada apta para tablets/PCs en almacén con red WiFi local.",
+            ],
+          },
+          {
+            subtitulo: "CU4 – Registrar Retiro y Despacho",
+            items: [
+              "Actor Principal: Personal de Depósito (Intranet).",
+              "Precondición: Pedido en estado 'Listo para Retiro' y documentación comercial aprobada.",
+              "Postcondición: Pedido en estado 'Entregado', emisión de Remito y baja definitiva de stock.",
+            ],
+            detalle: [
+              "Escenario de éxito: 1) Operario busca pedido por código de seguimiento; 2) Sistema valida estado y comprobante; 3) Operario registra entrega física y datos del receptor (cliente o fletero); 4) Sistema descuenta stock definitivamente, emite Remito y marca 'Entregado'.",
+              "Extensiones: 1a. Documentación inválida o inexistente: sistema alerta para denegar la entrega física.",
+              "Requisitos y Tecnología: Trazabilidad estricta (fecha, hora y operario responsable) y soporte para lectores QR/código de barras.",
+            ],
+          },
+          {
+            subtitulo: "CU5 – Consultar Estado de Pedido",
+            items: [
+              "Actor Principal: Cliente (Portal Público).",
+              "Precondición: El cliente posee el código de seguimiento generado tras confirmar su pedido.",
+              "Postcondición: Se despliega el estado logístico actual y el detalle de materiales.",
+            ],
+            detalle: [
+              "Escenario de éxito: 1) Cliente accede a Seguimiento Web; 2) Sistema solicita código; 3) Cliente ingresa código; 4) Sistema busca y muestra estado ('Confirmado', 'En Preparación', 'Listo para Retiro' o 'Entregado') y sucursal.",
+              "Extensiones: 3a. Código inválido o inexistente: informa el error y solicita reingreso.",
+              "Requisitos y Tecnología: Respuesta menor a 2 segundos en consulta pública sin necesidad de login.",
+            ],
+          },
+          {
+            subtitulo: "CU6 – Gestionar Catálogo e Inventario",
+            items: [
+              "Actor Principal: Administrador / Personal de Ventas (Intranet).",
+              "Precondición: Usuario autenticado en Intranet con permisos de edición de catálogo.",
+              "Postcondición: Se actualizan precios y existencias disponibles en el catálogo público.",
+            ],
+            detalle: [
+              "Escenario de éxito: 1) Administrador ingresa a Gestión de Catálogo; 2) Sistema despliega tabla de productos, precios y stock; 3) Modifica precio o stock disponible y guarda; 4) Sistema valida valores numéricos no negativos; 5) Actualiza BD y confirma éxito.",
+              "Extensiones: 3a. Datos inválidos (valores negativos o texto): rechaza la operación y muestra alerta de validación.",
+              "Requisitos y Tecnología: Control de acceso estricto (sesión activa) para evitar modificaciones no autorizadas.",
             ],
           },
         ],
-        imagen: "/diagramas/casos-uso.png",
-        pieImagen: "Diagrama General de Casos de Uso UML",
+        imagenes: [
+          {
+            src: "/diagramas/casos-uso.png",
+            pie: "Diagrama General de Casos de Uso UML",
+          },
+          {
+            src: "/diagramas/prototipo-cu1.png",
+            pie: "Prototipo No Operacional 1 – Cotización Web (CU1)",
+          },
+          {
+            src: "/diagramas/prototipo-cu2.png",
+            pie: "Prototipo No Operacional 2 – Confirmación de Pedido (CU2)",
+          },
+          {
+            src: "/diagramas/prototipo-cu3.png",
+            pie: "Prototipo No Operacional 3 – Panel de Depósito (CU3)",
+          },
+          {
+            src: "/diagramas/prototipo-cu4.png",
+            pie: "Prototipo No Operacional 4 – Despacho y Entrega (CU4)",
+          },
+          {
+            src: "/diagramas/prototipo-cu5.png",
+            pie: "Prototipo No Operacional 5 – Seguimiento de Pedido (CU5)",
+          },
+          {
+            src: "/diagramas/prototipo-cu6.png",
+            pie: "Prototipo No Operacional 6 – Gestión de Catálogo (CU6)",
+          },
+        ],
       },
     ],
   },
@@ -110,7 +263,7 @@ const FASES = {
     titulo: "2. Fase de Elaboración",
     expositor: "Bloque 2",
     subtitulo:
-      "Modelado conceptual, comportamiento dinámico y análisis de viabilidad",
+      "Modelado conceptual, secuencias, contratos, estados, análisis BCE y viabilidad",
     temas: [
       {
         nombre: "Modelo del Dominio",
@@ -118,7 +271,7 @@ const FASES = {
           {
             subtitulo: "Clases Conceptuales Centrales",
             items: [
-              "Núcleo comercial: Cliente, Cotizacion, DetalleCotizacion, Pedido, LineaPedido y Remito.",
+              "Núcleo comercial: Cliente, Cotizacion, DetalleCotizacion, Pedido, LineaPedido, ComprobantePago y Remito.",
               "Núcleo de inventario: Producto, StockInventario y Sucursal.",
             ],
             detalle: [
@@ -136,43 +289,307 @@ const FASES = {
             detalle: [
               "Por qué separar Cotización de Pedido: una cotización puede vencer o rechazarse sin comprometer la logística; el Pedido nace recién con la aprobación.",
               "Gestión de unidades de medida: resuelve la complejidad del corralón donde coexisten ventas por unidad suelta (ladrillos) y por bulto o fraccionamiento (bolsas, metros, palets).",
-              "Stock por sucursal: StockInventario vincula Producto con Sucursal diferenciando cantidad física total de cantidad reservada.",
+              "Stock por sucursal: StockInventario vincula Producto con Sucursal diferenciando cantidad física total disponible de cantidad reservada.",
             ],
           },
         ],
-        imagen: "/diagramas/dominio.png",
-        pieImagen: "Modelo del Dominio UML",
+        imagenes: [
+          {
+            src: "/diagramas/dominio.png",
+            pie: "Modelo del Dominio UML",
+          },
+        ],
       },
       {
-        nombre: "DSS, Contratos y Estados",
+        nombre: "Diagramas de Secuencia (DSS)",
         bloques: [
           {
-            subtitulo: "Dinámica y Contratos (DSS 1–6)",
+            subtitulo: "DSS 1 – Solicitar Cotización Web",
             items: [
-              "6 Diagramas de Secuencia del Sistema con barras de activación por sesión y por evento.",
-              "Contratos de operación especificando precondiciones y postcondiciones sobre instancias y asociaciones.",
+              "Participantes: :Cliente → :SistemaWebRosso (caja negra).",
+              "Eventos: seleccionarProductos(), ingresarDatosCliente(datos, sucursal) → retorna Presupuesto (72 hs).",
             ],
             detalle: [
-              "Convención de barras de activación: barra continua en la línea de vida del Actor (duración de la sesión) y barras puntuales en :Sistema por cada evento procesado.",
-              "Contratos de operación: formalizan creación de instancias (ej. Pedido, Remito), formación de asociaciones y modificación de atributos de stock.",
-              "Modelo de Análisis (BCE): apertura de la caja negra del sistema en objetos Borde (:UI...), Control (:Coordinador...) y Entidad (:Pedido, :StockInventario).",
+              "Barras de activación: barra continua en :Cliente durante la sesión y barras puntuales en :SistemaWebRosso por cada evento.",
+              "Valida stock disponible en tiempo real antes de calcular totales y emitir el código de cotización.",
             ],
           },
           {
-            subtitulo: "Ciclo de Vida del Pedido",
+            subtitulo: "DSS 2 – Aprobar Presupuesto y Pedido",
             items: [
-              "Estados: Confirmado → En Preparación → Listo para Retiro → Entregado (Estado Final).",
-              "El objeto Pedido nace directamente al aprobarse el presupuesto y reservarse el stock.",
+              "Participantes: :Cliente → :SistemaWebRosso.",
+              "Eventos: aprobarPresupuesto(nroCotizacion), confirmarEntregaYPago(modalidad, pago) → retorna Orden de Pedido.",
             ],
             detalle: [
-              "Transición 1: [Inicial] aprobarPresupuesto() / crearPedido(), reservarStock() → Confirmado.",
-              "Transición 2: iniciarPreparacion() / notificarDeposito() → En Preparación (actividad interna: do / realizar picking físico).",
-              "Transición 3 y 4: finalizarPicking() / emitirRemito() → Listo para Retiro → registrarEntrega() / descontarStockDefinitivo() → Entregado.",
+              "Verifica vigencia del plazo de 72 horas, crea la instancia de Pedido y ejecuta la reserva lógica de inventario.",
+            ],
+          },
+          {
+            subtitulo: "DSS 3 – Preparación en Depósito",
+            items: [
+              "Participantes: :PersonalDeposito → :SistemaWebRosso.",
+              "Eventos: consultarPedidosPendientes(sucursalId), iniciarPreparacion(idPedido), marcarListoParaRetiro(idPedido).",
+            ],
+            detalle: [
+              "Refleja exclusivamente el trabajo interno de almacén (picking), separado temporalmente del momento en que retira el cliente o fletero.",
+            ],
+          },
+          {
+            subtitulo: "DSS 4 – Registrar Retiro y Despacho",
+            items: [
+              "Participantes: :PersonalDeposito → :SistemaWebRosso.",
+              "Eventos: buscarPedidoPorCodigo(codigo), registrarDespachoYRetiro(idPedido, datosReceptor) → emite Remito.",
+            ],
+            detalle: [
+              "Incluye la acción interna descontarStockDefinitivo() una vez validada la documentación comercial.",
+            ],
+          },
+          {
+            subtitulo: "DSS 5 – Consultar Estado de Pedido",
+            items: [
+              "Participantes: :Cliente → :SistemaWebRosso.",
+              "Eventos: consultarEstadoPedido(codigoSeguimiento) → retorna estado actual y detalle.",
+            ],
+            detalle: [
+              "Interacción de consulta pura sin modificación de estado en el Modelo del Dominio.",
+            ],
+          },
+          {
+            subtitulo: "DSS 6 – Gestionar Catálogo e Inventario",
+            items: [
+              "Participantes: :Administrador → :SistemaWebRosso.",
+              "Eventos: obtenerCatalogo(sucursalId), guardarCambiosInventario(sucursalId, codProd, precio, stock).",
+            ],
+            detalle: [
+              "Permite actualizar precios unitarios y cantidades físicas disponibles manteniendo intactas las reservas activas.",
             ],
           },
         ],
-        imagen: "/diagramas/estados.png",
-        pieImagen: "Diagrama de Transición de Estados (Objeto: Pedido)",
+        imagenes: [
+          {
+            src: "/diagramas/dss-1.png",
+            pie: "DSS 1 – Solicitar Cotización Web",
+          },
+          {
+            src: "/diagramas/dss-2.png",
+            pie: "DSS 2 – Aprobar Presupuesto y Registrar Pedido",
+          },
+          {
+            src: "/diagramas/dss-3.png",
+            pie: "DSS 3 – Gestionar Preparación en Depósito",
+          },
+          {
+            src: "/diagramas/dss-4.png",
+            pie: "DSS 4 – Registrar Retiro y Despacho",
+          },
+          {
+            src: "/diagramas/dss-5.png",
+            pie: "DSS 5 – Consultar Estado de Pedido",
+          },
+          {
+            src: "/diagramas/dss-6.png",
+            pie: "DSS 6 – Gestionar Catálogo e Inventario",
+          },
+        ],
+      },
+      {
+        nombre: "Contratos de Operación",
+        bloques: [
+          {
+            subtitulo: "Contrato 1 – generarPresupuestoWeb",
+            items: [
+              "Referencia: CU1 – Solicitar Cotización Web.",
+              "Efecto: Crea instancia 'cot' de Cotizacion con validez de 72 horas y sus DetalleCotizacion.",
+            ],
+            detalle: [
+              "Precondiciones: Existen instancias válidas de Producto y StockInventario en la Sucursal con cantidadDisponible >= cantidadSolicitada.",
+              "Postcondiciones: Se creó 'cot' (Cotizacion) con fechaEmision, fechaVencimiento = fechaActual + 72 horas, estado = 'Emitida'. Se crearon instancias de DetalleCotizacion asociadas a 'cot' y 'prod'. Se asoció 'cot' con Cliente.",
+            ],
+          },
+          {
+            subtitulo: "Contrato 2 – confirmarPedidoYReservarStock",
+            items: [
+              "Referencia: CU2 – Aprobar Presupuesto y Registrar Pedido.",
+              "Efecto: Crea Pedido ('Confirmado'), ComprobantePago y reserva lógicamente StockInventario.",
+            ],
+            detalle: [
+              "Precondiciones: Existe 'cot' en estado 'Emitida' y fechaActual <= cot.fechaVencimiento. Stock disponible sigue siendo suficiente.",
+              "Postcondiciones: Se creó Pedido 'p' (estado = 'Confirmado', modalidadEntrega) y LineaPedido por cada detalle. Se creó ComprobantePago asociado a 'p'. En StockInventario: cantidadDisponible -= cantidad y cantidadReservada += cantidad.",
+            ],
+          },
+          {
+            subtitulo: "Contrato 3 – marcarPedidoListoParaRetiro",
+            items: [
+              "Referencia: CU3 – Gestionar Preparación en Depósito.",
+              "Efecto: Modifica el atributo estado del Pedido 'p' a 'Listo para Retiro'.",
+            ],
+            detalle: [
+              "Precondiciones: Existe un Pedido 'p' en estado 'En Preparación' y los materiales físicos recolectados coinciden con las LineaPedido.",
+              "Postcondiciones: No se crearon ni eliminaron instancias. Se modificó p.estado = 'Listo para Retiro'.",
+            ],
+          },
+          {
+            subtitulo: "Contrato 4 – registrarDespachoYRetiro",
+            items: [
+              "Referencia: CU4 – Registrar Retiro y Despacho.",
+              "Efecto: Cambia Pedido a 'Entregado', crea Remito 'r' y descuenta cantidadReservada.",
+            ],
+            detalle: [
+              "Precondiciones: Existe Pedido 'p' en estado 'Listo para Retiro' con ComprobantePago aprobado.",
+              "Postcondiciones: Se modificó p.estado = 'Entregado'. Se creó Remito 'r' (numeroRemito, fechaEmision, estadoEntrega = 'Despachado', observaciones = datosReceptor) asociado a 'p' y PersonalDeposito. En StockInventario: cantidadReservada -= cantidad.",
+            ],
+          },
+          {
+            subtitulo: "Contrato 5 – consultarEstadoPedido",
+            items: [
+              "Referencia: CU5 – Consultar Estado de Pedido.",
+              "Efecto: Operación de solo lectura (no modifica instancias, atributos ni asociaciones).",
+            ],
+            detalle: [
+              "Precondiciones: Existe una instancia 'p' de Pedido asociada al codigoSeguimiento ingresado.",
+              "Postcondiciones: No se crearon ni eliminaron instancias ni se modificaron atributos o asociaciones en el Modelo del Dominio (consulta pura).",
+            ],
+          },
+          {
+            subtitulo: "Contrato 6 – guardarCambiosInventario",
+            items: [
+              "Referencia: CU6 – Gestionar Catálogo e Inventario.",
+              "Efecto: Actualiza precioUnitarioVenta en Producto y cantidadDisponible en StockInventario.",
+            ],
+            detalle: [
+              "Precondiciones: Administrador 'admin' con sesión activa. Existen Sucursal 's', Producto 'prod' y StockInventario 'si' asociados. Valores nuevoPrecio >= 0 y nuevoStock >= 0.",
+              "Postcondiciones: Se modificó prod.precioUnitarioVenta = nuevoPrecio y si.cantidadDisponible = nuevoStock. Se conservaron sin cambios las asociaciones y si.cantidadReservada.",
+            ],
+          },
+        ],
+        imagenes: [],
+      },
+      {
+        nombre: "Transición de Estados",
+        bloques: [
+          {
+            subtitulo: "Objeto de Estudio: Pedido",
+            items: [
+              "Estados del ciclo de vida: Confirmado → En Preparación → Listo para Retiro → Entregado (Estado Final).",
+              "El objeto Pedido nace exclusivamente cuando el cliente aprueba una cotización previa.",
+            ],
+            detalle: [
+              "Justificación teórica: mientras el cliente solo solicita precios, la entidad existente es Cotizacion; el Pedido se instancia recién al confirmarse la operación y reservarse el stock.",
+              "Asegura trazabilidad 1 a 1 con los Contratos 2, 3 y 4 y con los botones operativos del prototipo funcional.",
+            ],
+          },
+          {
+            subtitulo: "Tabla de Transiciones UML",
+            items: [
+              "(Inicial) → Confirmado: aprobarPresupuesto(nroCot) / crearPedido(), reservarStock().",
+              "Confirmado → En Preparación → Listo para Retiro → Entregado.",
+            ],
+            detalle: [
+              "Transición 1: [Inicial] aprobarPresupuesto(numeroCotizacion) / crearPedido(), reservarStock() → Confirmado.",
+              "Transición 2: iniciarPreparacion() / notificarDeposito() → En Preparación (Actividad interna: do / realizar picking físico de materiales).",
+              "Transición 3: finalizarPicking() / emitirRemito() → Listo para Retiro.",
+              "Transición 4: registrarEntrega() / descontarStockDefinitivo() → Entregado (Estado Final).",
+            ],
+          },
+        ],
+        imagenes: [
+          {
+            src: "/diagramas/estados.png",
+            pie: "Diagrama de Transición de Estados (Objeto: Pedido)",
+          },
+        ],
+      },
+      {
+        nombre: "Modelo de Análisis (BCE)",
+        bloques: [
+          {
+            subtitulo: "BCE 1 – Solicitar Cotización Web",
+            items: [
+              "Borde: :UI Catálogo y Cotización | Control: :Coordinador de Cotización.",
+              "Entidades: :Cliente, :Producto, :StockInventario, :Cotizacion.",
+            ],
+            detalle: [
+              "Abre la caja negra del DSS 1 validando la especificación del CU1 mediante los estereotipos de Jacobson (Boundary, Control, Entity).",
+              "El coordinador consulta precios en :Producto, verifica existencias en :StockInventario y genera :Cotizacion.",
+            ],
+          },
+          {
+            subtitulo: "BCE 2 – Aprobar Presupuesto y Pedido",
+            items: [
+              "Borde: :UI Confirmación de Pedido | Control: :Coordinador de Pedidos.",
+              "Entidades: :Cotizacion, :Pedido, :ComprobantePago, :StockInventario.",
+            ],
+            detalle: [
+              "Valida la vigencia de :Cotizacion, instancia :Pedido y :ComprobantePago, y actualiza la reserva lógica en :StockInventario.",
+            ],
+          },
+          {
+            subtitulo: "BCE 3 – Preparación en Depósito",
+            items: [
+              "Borde: :UI Panel de Depósito | Control: :Coordinador de Preparación.",
+              "Entidades: :Pedido, :LineaPedido.",
+            ],
+            detalle: [
+              "El operario consulta los pedidos confirmados, lee el detalle de materiales en :LineaPedido y actualiza el estado en :Pedido.",
+            ],
+          },
+          {
+            subtitulo: "BCE 4 – Registrar Retiro y Despacho",
+            items: [
+              "Borde: :UI Despacho y Entrega | Control: :Coordinador de Despacho.",
+              "Entidades: :Pedido, :Remito, :StockInventario.",
+            ],
+            detalle: [
+              "Verifica el estado del :Pedido, emite la instancia de :Remito y asienta la salida definitiva en :StockInventario.",
+            ],
+          },
+          {
+            subtitulo: "BCE 5 – Consultar Estado de Pedido",
+            items: [
+              "Borde: :UI Seguimiento Web | Control: :Coordinador de Seguimiento.",
+              "Entidades: :Pedido, :LineaPedido, :Sucursal.",
+            ],
+            detalle: [
+              "Recupera el estado actual del :Pedido junto con su detalle y sucursal de retiro para mostrarlo al :Cliente.",
+            ],
+          },
+          {
+            subtitulo: "BCE 6 – Gestionar Catálogo e Inventario",
+            items: [
+              "Borde: :UI Gestión de Catálogo | Control: :Coordinador de Catálogo.",
+              "Entidades: :Producto, :StockInventario, :Sucursal.",
+            ],
+            detalle: [
+              "El :Administrador modifica valores a través de :UI Gestión de Catálogo, y el coordinador persiste los cambios en :Producto y :StockInventario.",
+            ],
+          },
+        ],
+        imagenes: [
+          {
+            src: "/diagramas/bce-1.png",
+            pie: "Modelo de Análisis BCE – CU1 Cotización Web",
+          },
+          {
+            src: "/diagramas/bce-2.png",
+            pie: "Modelo de Análisis BCE – CU2 Aprobar Pedido",
+          },
+          {
+            src: "/diagramas/bce-3.png",
+            pie: "Modelo de Análisis BCE – CU3 Preparación en Depósito",
+          },
+          {
+            src: "/diagramas/bce-4.png",
+            pie: "Modelo de Análisis BCE – CU4 Retiro y Despacho",
+          },
+          {
+            src: "/diagramas/bce-5.png",
+            pie: "Modelo de Análisis BCE – CU5 Seguimiento de Pedido",
+          },
+          {
+            src: "/diagramas/bce-6.png",
+            pie: "Modelo de Análisis BCE – CU6 Gestión de Catálogo",
+          },
+        ],
       },
       {
         nombre: "Viabilidad y Gantt",
@@ -184,8 +601,8 @@ const FASES = {
               "Operacional: interfaces diferenciadas por rol con curva de aprendizaje mínima para Ventas y Depósito.",
             ],
             detalle: [
-              "Infraestructura requerida: servidores cloud de alta disponibilidad, PCs estándar en mostrador/depósito y dispositivos móviles/lectores para validar remitos.",
-              "Adopción operacional: al separar el Portal Público de la Intranet por roles, cada empleado ve únicamente las acciones de su puesto.",
+              "Infraestructura requerida: servidores cloud de alta disponibilidad, PCs estándar en mostrador/depósito y lectores para validar remitos.",
+              "Adopción operacional: respaldada por las entrevistas de Fase 1; cada empleado opera únicamente su módulo correspondiente.",
               "Gestión de riesgos: mitigación de sobreventa mediante reserva lógica a 72 hs y validación temprana con prototipos.",
             ],
           },
@@ -193,17 +610,21 @@ const FASES = {
             subtitulo: "Viabilidad Económica y Cronograma",
             items: [
               "Inversión desglosada en hardware ($7.290.000), software ($725.000) y equipo de desarrollo ($9.300.000 a dedicación parcial en 3 meses).",
-              "Planificación iterativa en GanttProject abarcando las 4 fases del Proceso Unificado.",
+              "Planificación estructurada en GanttProject siguiendo las 4 fases del Proceso Unificado.",
             ],
             detalle: [
-              "Criterio de costos de personal ($9.300.000): las horas presupuestadas reflejan dedicación parcial de los roles del equipo distribuida a lo largo de los 3 meses.",
-              "Retorno de inversión (ROI): amortización impulsada por el ahorro de horas-hombre en presupuestos manuales y reducción de errores de despacho.",
-              "Cronograma UP: Inicio (relevamiento y CU), Elaboración (UML y viabilidad), Construcción (prototipo web) y Transición (despliegue).",
+              "Criterio de costos de personal ($9.300.000): las horas presupuestadas reflejan dedicación parcial del equipo distribuida en los 3 meses de desarrollo.",
+              "Cronograma real UP: Inicio (18/05 – 23/09), Elaboración (24/09 – 14/11), Construcción (16/11 – 04/12) y Transición (07/12 – 18/12).",
+              "Marco de Desarrollo: matriz de disciplinas mostrando creación (c) y refinamiento (r) iterativo.",
             ],
           },
         ],
-        imagen: "/diagramas/gantt.png",
-        pieImagen: "Diagrama de Gantt del Proyecto",
+        imagenes: [
+          {
+            src: "/diagramas/gantt.png",
+            pie: "Diagrama de Gantt del Proyecto (Proceso Unificado)",
+          },
+        ],
       },
     ],
   },
@@ -223,7 +644,7 @@ const FASES = {
               "Consulta en tiempo real del avance del pedido mediante código de seguimiento (CU5).",
             ],
             detalle: [
-              "Paso 1 en vivo: seleccionar materiales en el catálogo con scroll independiente, completar datos del cliente y generar presupuesto.",
+              "Paso 1 en vivo: seleccionar materiales en el catálogo, completar datos del cliente y generar presupuesto.",
               "Paso 2 en vivo: verificar cálculo de totales, validez de 72 hs y confirmar el pedido eligiendo Retiro Personal o Fletero Externo.",
               "Acceso directo con mando: presionar botón [X] para saltar al Portal Cliente (/).",
             ],
@@ -242,7 +663,7 @@ const FASES = {
           },
         ],
         esDemo: true,
-        imagen: null,
+        imagenes: [],
       },
     ],
   },
@@ -275,11 +696,11 @@ const FASES = {
             detalle: [
               "Estrategia de implantación: puesta en marcha piloto en casa central Tucumán antes de extender a las sucursales de Salta.",
               "Acompañamiento al usuario: entrega de manuales operativos por rol y soporte intensivo durante las primeras dos semanas.",
-              "Aval institucional: proyecto respaldado mediante nota formal firmada por Recursos Humanos de Rosso Hnos. S.A.",
+              "Aval institucional: proyecto respaldado mediante nota formal firmada por Responsable de Recursos Humanos de Rosso Hnos. S.A.",
             ],
           },
         ],
-        imagen: null,
+        imagenes: [],
       },
     ],
   },
@@ -290,6 +711,7 @@ export default function PresentacionTFI() {
   const [temaIdx, setTemaIdx] = useState(0);
   const [foco, setFoco] = useState("bloque"); // 'bloque' | 'imagen'
   const [bloqueIdx, setBloqueIdx] = useState(0);
+  const [imgIdx, setImgIdx] = useState(0);
   const [modalAbierto, setModalAbierto] = useState(null); // null | 'bloque' | 'imagen'
   const [errorImagen, setErrorImagen] = useState(false);
 
@@ -300,14 +722,19 @@ export default function PresentacionTFI() {
   const temaActual = faseActual.temas[temaIdx] || faseActual.temas[0];
   const bloquesActuales = temaActual.bloques || [];
   const bloqueActivo = bloquesActuales[bloqueIdx] || bloquesActuales[0];
+
+  const imagenesActuales = temaActual.imagenes || [];
+  const tieneImagenes = imagenesActuales.length > 0;
+  const imagenActiva = imagenesActuales[imgIdx] || imagenesActuales[0];
+
   const keysFases = Object.keys(FASES);
 
-  // Reinicia el estado de error de imagen al cambiar de diapositiva
+  // Reinicia el estado de error al cambiar de fase, tema o imagen del carrusel
   useEffect(() => {
     setErrorImagen(false);
-  }, [faseKey, temaIdx]);
+  }, [faseKey, temaIdx, imgIdx]);
 
-  // Si hay varios bloques con mucho texto, hace scroll suave hacia el recuadro seleccionado
+  // Hace scroll suave hacia el recuadro seleccionado cuando hay muchos bloques (ej. CU 1-6)
   useEffect(() => {
     if (foco === "bloque" && bloqueRefs.current[bloqueIdx]) {
       bloqueRefs.current[bloqueIdx].scrollIntoView({
@@ -322,6 +749,7 @@ export default function PresentacionTFI() {
     setTemaIdx(0);
     setFoco("bloque");
     setBloqueIdx(0);
+    setImgIdx(0);
     setModalAbierto(null);
   };
 
@@ -329,6 +757,7 @@ export default function PresentacionTFI() {
     setTemaIdx(nuevoIdx);
     setFoco("bloque");
     setBloqueIdx(0);
+    setImgIdx(0);
     setModalAbierto(null);
   };
 
@@ -337,6 +766,7 @@ export default function PresentacionTFI() {
       setModalAbierto(null);
       setFoco("bloque");
       setBloqueIdx(0);
+      setImgIdx(0);
       if (temaIdx < faseActual.temas.length - 1) {
         setTemaIdx(temaIdx + 1);
       } else {
@@ -350,6 +780,7 @@ export default function PresentacionTFI() {
       setModalAbierto(null);
       setFoco("bloque");
       setBloqueIdx(0);
+      setImgIdx(0);
       if (temaIdx > 0) {
         setTemaIdx(temaIdx - 1);
       } else {
@@ -362,10 +793,23 @@ export default function PresentacionTFI() {
       }
     },
     onAbajo: () => {
+      if (modalAbierto === "imagen" && imagenesActuales.length > 1) {
+        setImgIdx((prev) =>
+          prev < imagenesActuales.length - 1 ? prev + 1 : 0,
+        );
+        return;
+      }
       if (modalAbierto) return;
+
       if (foco === "imagen") {
-        setFoco("bloque");
-        setBloqueIdx(0);
+        if (imagenesActuales.length > 1) {
+          setImgIdx((prev) =>
+            prev < imagenesActuales.length - 1 ? prev + 1 : 0,
+          );
+        } else {
+          setFoco("bloque");
+          setBloqueIdx(0);
+        }
       } else {
         setBloqueIdx((prev) =>
           prev < bloquesActuales.length - 1 ? prev + 1 : 0,
@@ -373,10 +817,23 @@ export default function PresentacionTFI() {
       }
     },
     onArriba: () => {
+      if (modalAbierto === "imagen" && imagenesActuales.length > 1) {
+        setImgIdx((prev) =>
+          prev > 0 ? prev - 1 : imagenesActuales.length - 1,
+        );
+        return;
+      }
       if (modalAbierto) return;
+
       if (foco === "imagen") {
-        setFoco("bloque");
-        setBloqueIdx(bloquesActuales.length - 1);
+        if (imagenesActuales.length > 1) {
+          setImgIdx((prev) =>
+            prev > 0 ? prev - 1 : imagenesActuales.length - 1,
+          );
+        } else {
+          setFoco("bloque");
+          setBloqueIdx(bloquesActuales.length - 1);
+        }
       } else {
         setBloqueIdx((prev) =>
           prev > 0 ? prev - 1 : bloquesActuales.length - 1,
@@ -384,8 +841,15 @@ export default function PresentacionTFI() {
       }
     },
     onDerecha: () => {
+      if (modalAbierto === "imagen" && imagenesActuales.length > 1) {
+        setImgIdx((prev) =>
+          prev < imagenesActuales.length - 1 ? prev + 1 : 0,
+        );
+        return;
+      }
       if (modalAbierto) return;
-      if (temaActual.imagen) {
+
+      if (tieneImagenes) {
         setFoco("imagen");
       } else if (bloqueIdx < bloquesActuales.length - 1) {
         setFoco("bloque");
@@ -393,10 +857,17 @@ export default function PresentacionTFI() {
       }
     },
     onIzquierda: () => {
+      if (modalAbierto === "imagen" && imagenesActuales.length > 1) {
+        setImgIdx((prev) =>
+          prev > 0 ? prev - 1 : imagenesActuales.length - 1,
+        );
+        return;
+      }
       if (modalAbierto) return;
+
       if (foco === "imagen") {
         setFoco("bloque");
-      } else if (!temaActual.imagen && bloqueIdx > 0) {
+      } else if (!tieneImagenes && bloqueIdx > 0) {
         setBloqueIdx(bloqueIdx - 1);
       }
     },
@@ -411,7 +882,7 @@ export default function PresentacionTFI() {
     onAccionA: () => {
       if (modalAbierto) {
         setModalAbierto(null);
-      } else if (foco === "imagen" && temaActual.imagen) {
+      } else if (foco === "imagen" && tieneImagenes) {
         setModalAbierto("imagen");
       } else {
         setModalAbierto("bloque");
@@ -424,7 +895,7 @@ export default function PresentacionTFI() {
 
   return (
     <div className="w-full max-w-7xl mx-auto space-y-3">
-      {/* Cabecera de Navegación Principal (Compacta para proyectores 768p y móvil) */}
+      {/* Cabecera de Navegación Principal */}
       <div className="bg-white rounded-xl shadow-md border-t-4 border-red-700 overflow-hidden">
         <div className="bg-gray-900 text-white px-3 md:px-4 py-2.5 flex flex-wrap gap-2 justify-between items-center">
           <div className="flex flex-wrap gap-1.5 md:gap-2">
@@ -456,14 +927,14 @@ export default function PresentacionTFI() {
 
         {/* Subtítulo + Pestañas horizontales de temas */}
         <div className="px-4 md:px-6 py-2.5 bg-gray-50 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-          <div>
+          <div className="shrink-0">
             <h2 className="text-lg md:text-xl font-bold text-gray-800 leading-tight">
               {faseActual.titulo}
             </h2>
             <p className="text-xs text-gray-500">{faseActual.subtitulo}</p>
           </div>
 
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5 md:justify-end">
             {faseActual.temas.map((tema, idx) => (
               <button
                 key={tema.nombre}
@@ -481,12 +952,12 @@ export default function PresentacionTFI() {
         </div>
       </div>
 
-      {/* Área de Contenido: Mantiene 2 columnas desde 768px (md:) para proyectores 4:3 */}
+      {/* Área de Contenido: 2 columnas desde md: (768px) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
-        {/* TARJETA IZQUIERDA (Con scroll interno controlado por stick para textos largos) */}
+        {/* TARJETA IZQUIERDA (Sub-recuadros navegables con scroll interno) */}
         <div
           className={`bg-white rounded-xl p-4 md:p-5 border border-gray-200 shadow-md flex flex-col justify-between ${
-            temaActual.imagen ? "md:col-span-5" : "md:col-span-12"
+            tieneImagenes ? "md:col-span-5" : "md:col-span-12"
           }`}
         >
           <div>
@@ -495,13 +966,14 @@ export default function PresentacionTFI() {
                 {temaActual.nombre}
               </h3>
               <span className="text-[11px] text-gray-400 shrink-0">
-                Stick ↑↓ • [A] Detalle
+                Stick ↑↓ ({bloqueIdx + 1}/{bloquesActuales.length}) • [A]
+                Detalle
               </span>
             </div>
 
             <div
               className={`grid gap-3 md:max-h-[56vh] md:overflow-y-auto p-1 ${
-                temaActual.imagen ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
+                tieneImagenes ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
               }`}
             >
               {bloquesActuales.map((bloque, bIdx) => {
@@ -568,8 +1040,8 @@ export default function PresentacionTFI() {
           )}
         </div>
 
-        {/* TARJETA DERECHA: Diagrama UML / Gráfico */}
-        {temaActual.imagen && (
+        {/* TARJETA DERECHA: Diagrama UML / Carrusel de Imágenes */}
+        {tieneImagenes && imagenActiva && (
           <div
             onClick={() => {
               setFoco("imagen");
@@ -581,38 +1053,73 @@ export default function PresentacionTFI() {
                 : "border border-gray-200 shadow-md opacity-85 hover:opacity-100"
             }`}
           >
-            <div className="flex items-center justify-between border-b pb-2 mb-3 gap-2">
+            <div className="flex items-center justify-between border-b pb-2 mb-2 gap-2">
               <span className="text-xs md:text-sm font-bold text-gray-700 truncate">
-                {temaActual.pieImagen}
+                {imagenActiva.pie}
               </span>
-              {foco === "imagen" ? (
-                <span className="text-[10px] md:text-[11px] font-bold bg-red-600 text-white px-2.5 py-0.5 rounded-full shrink-0">
-                  Seleccionado • [A] Ampliar ⤢
-                </span>
-              ) : (
-                <span className="text-[11px] text-gray-400 shrink-0">
-                  Stick Der. →
-                </span>
-              )}
+              <div className="flex items-center gap-2 shrink-0">
+                {imagenesActuales.length > 1 && (
+                  <span className="text-[11px] font-bold bg-gray-200 text-gray-700 px-2 py-0.5 rounded-full">
+                    {imgIdx + 1} / {imagenesActuales.length}
+                  </span>
+                )}
+                {foco === "imagen" ? (
+                  <span className="text-[10px] md:text-[11px] font-bold bg-red-600 text-white px-2.5 py-0.5 rounded-full">
+                    {imagenesActuales.length > 1
+                      ? "Stick ↑↓ Cambiar • [A] Zoom ⤢"
+                      : "Seleccionado • [A] Ampliar ⤢"}
+                  </span>
+                ) : (
+                  <span className="text-[11px] text-gray-400">
+                    Stick Der. →
+                  </span>
+                )}
+              </div>
             </div>
 
-            <div className="flex-1 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-2 h-[36vh] md:h-[52vh]">
+            {/* Selector rápido cuando hay múltiples gráficos/prototipos en la misma pestaña */}
+            {imagenesActuales.length > 1 && (
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="flex flex-wrap gap-1.5 mb-2.5"
+              >
+                {imagenesActuales.map((img, idx) => (
+                  <button
+                    key={img.src}
+                    type="button"
+                    onClick={() => {
+                      setFoco("imagen");
+                      setImgIdx(idx);
+                    }}
+                    className={`px-2.5 py-0.5 rounded text-[11px] font-bold transition ${
+                      imgIdx === idx
+                        ? "bg-red-600 text-white"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200 border border-gray-300"
+                    }`}
+                  >
+                    {idx === 0 ? "1. General" : `${idx + 1}. Vista ${idx}`}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="flex-1 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-2 h-[36vh] md:h-[50vh]">
               {!errorImagen ? (
                 <img
-                  src={temaActual.imagen}
-                  alt={temaActual.pieImagen}
+                  src={imagenActiva.src}
+                  alt={imagenActiva.pie}
                   onError={() => setErrorImagen(true)}
                   className="max-h-full max-w-full object-contain rounded"
                 />
               ) : (
                 <div className="text-center p-4 text-gray-400">
                   <p className="text-sm font-semibold text-gray-500">
-                    {temaActual.pieImagen}
+                    {imagenActiva.pie}
                   </p>
                   <p className="text-xs mt-1">
                     Guardar archivo en:{" "}
                     <code className="bg-gray-200 px-1.5 py-0.5 rounded text-gray-700">
-                      public{temaActual.imagen}
+                      public{imagenActiva.src}
                     </code>
                   </p>
                 </div>
@@ -688,19 +1195,23 @@ export default function PresentacionTFI() {
         </div>
       )}
 
-      {/* MODAL 2: Diagrama a Pantalla Completa (Botón A sobre Imagen) */}
-      {modalAbierto === "imagen" && temaActual.imagen && (
+      {/* MODAL 2: Diagrama / Prototipo a Pantalla Completa (Botón A sobre Imagen) */}
+      {modalAbierto === "imagen" && imagenActiva && (
         <div
           onClick={() => setModalAbierto(null)}
           className="fixed inset-0 bg-black/85 z-50 flex flex-col items-center justify-center p-3 sm:p-4 cursor-zoom-out"
         >
           <img
-            src={temaActual.imagen}
-            alt={temaActual.pieImagen}
+            src={imagenActiva.src}
+            alt={imagenActiva.pie}
             className="max-w-full max-h-[85vh] rounded shadow-2xl bg-white p-2"
           />
           <span className="mt-3 text-xs text-gray-200 bg-gray-900/90 px-4 py-1.5 rounded-full text-center">
-            {temaActual.pieImagen} • Apretá [A] o [B] para volver
+            {imagenActiva.pie}
+            {imagenesActuales.length > 1
+              ? ` (${imgIdx + 1}/${imagenesActuales.length} • Stick ↑↓ para cambiar)`
+              : ""}{" "}
+            • Apretá [A] o [B] para volver
           </span>
         </div>
       )}
