@@ -1144,7 +1144,7 @@ const FASES = {
         ],
       },
       {
-        nombre: "Modelo de Análisis (BCE)",
+        nombre: "Modelo de Análisis (Boundary – Control – Entity)",
         bloques: [
           {
             subtitulo: "BCE 1 – Generar Cotización Web",
@@ -1530,7 +1530,7 @@ const FASES = {
         nombre: "Impacto y Conclusiones",
         bloques: [
           {
-            subtitulo: "Transformación Operacional (As-Is vs. To-Be)",
+            subtitulo: "Transformación Operacional y Escalabilidad Regional",
             items: [
               "Eliminación de cuellos de botella en cotizaciones manuales y triangulación telefónica Ventas–Depósito.",
               "Escalabilidad multi-sucursal (Tucumán y Salta) con trazabilidad completa desde presupuesto hasta remito.",
