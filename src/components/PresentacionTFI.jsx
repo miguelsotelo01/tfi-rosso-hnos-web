@@ -7,34 +7,33 @@ const FASES = {
     titulo: "1. Fase de Inicio",
     expositor: "Bloque 1",
     subtitulo:
-      "Relevamiento organizacional, alcance, reglas de negocio, casos de uso y prototipos",
+      "Introducción del proyecto, organización, áreas afectadas, BPD, alcance y casos de uso",
     temas: [
       {
         nombre: "Empresa y Estructura",
         bloques: [
           {
-            subtitulo: "Identidad Corporativa y Unidad Rosso Mix",
+            subtitulo: "Proyecto, Organización y Unidad Rosso Mix",
             items: [
-              "Rosso Hnos. S.A.: comercialización de materiales para construcción, refacción y decoración en Tucumán y Salta.",
-              "Unidad productiva complementaria Rosso Mix (hormigón elaborado) y atención a particulares, arquitectos y constructoras.",
+              "Proyecto: sistematización web de cotizaciones, reserva de stock, pedidos y despacho para Rosso Hnos. S.A.",
+              "Empresa: comercialización de materiales para construcción en Tucumán y Salta + unidad Rosso Mix (hormigón elaborado).",
             ],
             modalSecciones: [
               {
-                titulo: "Perfil Organizacional, Misión y Visión",
+                titulo: "Qué Hacemos en la Empresa (Propuesta del Proyecto)",
                 destacado: false,
                 items: [
-                  "Actividad principal: Comercialización de materiales para construcción, refacción y decoración con sucursales en Tucumán y Salta, más logística y distribución.",
-                  "Unidad Rosso Mix: División especializada en la producción y distribución de hormigón elaborado.",
-                  "Misión: Brindar soluciones integrales ofreciendo materiales de calidad, variedad y atención personalizada a clientes particulares, albañiles, arquitectos y empresas constructoras.",
-                  "Visión: Consolidarse como empresa referente del Noroeste Argentino (NOA) por calidad de atención, innovación en procesos y desarrollo regional.",
+                  "Objetivo de intervención: Reemplazar la confección manual de presupuestos y la comunicación informal por WhatsApp/teléfono entre Ventas y Depósito por una plataforma web integrada.",
+                  "Alcance operativo: Autogestión de cotizaciones web en tiempo real, reserva lógica de inventario por sucursal, preparación en depósito y trazabilidad hasta el retiro.",
                 ],
               },
               {
-                titulo: "Objetivos Estratégicos y Valores Institucionales",
+                titulo: "Perfil Organizacional, Misión, Visión y Rosso Mix",
                 destacado: true,
                 items: [
-                  "Objetivos organizacionales: Crecimiento sostenido de sucursales, trabajo con marcas reconocidas, optimización logística, fortalecimiento de Rosso Mix e incorporación de herramientas tecnológicas.",
-                  "Valores: Compromiso, Calidad, Trabajo en equipo, Cercanía con el cliente, Responsabilidad y seriedad, Innovación y Desarrollo regional.",
+                  "Actividad principal: Comercialización de materiales para construcción, refacción y decoración en Tucumán y Salta, atendiendo a particulares, albañiles, arquitectos y constructoras.",
+                  "Unidad Rosso Mix: División productiva complementaria especializada en hormigón elaborado.",
+                  "Misión y Visión: Brindar soluciones integrales con calidad y atención personalizada, consolidándose como referente del NOA por innovación en procesos y logística.",
                 ],
               },
             ],
@@ -162,7 +161,7 @@ const FASES = {
                 destacado: true,
                 items: [
                   "Pools y Carriles: Pool CLIENTE (solicitud, aprobación y pago) frente a Pool ROSSO MATERIALES dividido en VENTAS y DEPÓSITO.",
-                  "Compuertas Exclusivas (X) y Artefacto de Datos: Evalúan disponibilidad de stock en Ventas y aprobación en Cliente; el registro formal en base de datos ocurre recién tras aprobarse la compra.",
+                  "Compuertas Exclusivas (X) y Artefacto de Datos: Evalúan disponibilidad de stock en Ventas y aprobación en Cliente; el registro formal ocurre recién tras aprobarse la compra.",
                 ],
               },
             ],
@@ -267,248 +266,269 @@ const FASES = {
         nombre: "Casos de Uso (CU 1–6)",
         bloques: [
           {
-            subtitulo: "CU1 – Solicitar Cotización Web",
+            subtitulo: "Caso de Uso 1: Solicitar Cotización Web",
             items: [
-              "Actor Principal: Cliente (Subsistema: Gestión de Catálogo y Cotización Web).",
-              "Precondición: Acceso a la plataforma web y materiales con precios actualizados en Inventario.",
-              "Postcondición: Se emite Cotización / Presupuesto Web preliminar con precios, descuentos y plazo de validez (72 hs).",
+              "Actor principal: Cliente (Representación de el subsistema de Gestión de Catálogo y Cotización Web).",
+              "Precondiciones: El cliente debe acceder a la plataforma web. Deben existir materiales y precios actualizados cargados en el inventario para el funcionamiento.",
+              "Postcondiciones: Se generará y emitirá una Cotización - Presupuesto Web preliminar detallando precios, descuentos y plazo de validez.",
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Gestión de Catálogo y Cotización Web.",
+                  "Representación de el subsistema de Gestión de Catálogo y Cotización Web.",
+                  "Nombre: Solicitar Cotización Web.",
                   "Actor principal: Cliente.",
-                  "Precondiciones: El cliente accede a la plataforma web y existen materiales con precios actualizados cargados en el inventario.",
-                  "Postcondiciones: Se genera y emite una Cotización – Presupuesto Web preliminar detallando precios, descuentos y plazo de validez de 72 horas.",
+                  "Precondiciones: El cliente debe acceder a la plataforma web. Deben existir materiales y precios actualizados cargados en el inventario para el funcionamiento.",
+                  "Postcondiciones: Se generará y emitirá una Cotización - Presupuesto Web preliminar detallando precios, descuentos y plazo de validez.",
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Cliente ingresa al sitio web y consulta el catálogo.",
-                  "2. El Sistema despliega el catálogo con los stocks correspondientes.",
-                  "3. El Cliente selecciona los productos y cantidades a cotizar.",
-                  "4–5. El Sistema consulta en tiempo real la BD 'Inventario' y valida disponibilidad física.",
-                  "6. El Cliente ingresa sus datos de contacto (Nombre, CUIT/DNI, Teléfono, Email) y sucursal de referencia.",
-                  "7–8. El Sistema calcula precios totales, genera, emite y envía el Presupuesto Web al cliente.",
+                  "1. Este caso de uso comienza cuando el Cliente ingresa al sitio web y consulta el Catalogo.",
+                  "2. El Sistema despliega el catálogo con los stocks correspondientes de los productos.",
+                  "3. El cliente selecciona los productos para ser cotizados.",
+                  '4. El sistema consulta en tiempo real la disponibilidad de stock de los materiales solicitados en la base de datos "Inventario".',
+                  "5. El sistema valida la disponibilidad física (condición necesaria).",
+                  "6. El Cliente ingresa sus datos de contacto (Nombre, Apellido, CUIT/DNI, Teléfono, Correo Electrónico) y selecciona la sucursal de referencia.",
+                  "7. El sistema calcula los precios totales y genera el presupuesto.",
+                  "8. El sistema emite y envía el Presupuesto Web al cliente.",
+                  "9. Finaliza la sesión de cotización.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "4a. Falta de stock físico: El sistema informa indisponibilidad y no permite presupuestar ese artículo.",
-                  "Contingencia técnica: Ante pérdida de conectividad o energía eléctrica, conserva lo seleccionado y retoma al restablecerse el servicio.",
-                  "Requisitos y Tecnología: Alta concurrencia simultánea sin demoras; Frontend Web responsivo, Servidor Backend y BD de inventario en tiempo real.",
+                  "Flujo alternativo: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Flujo alternativo — 4a. Falta de stock físico: Si no hay disponibilidad de un material, el sistema informa la falta de stock y no permite presupuestar ese artículo.",
+                  "Requisitos especiales: El sistema debe soportar alta concurrencia de clientes simultáneos sin presentar demoras (rendimiento).",
+                  "Lista de tecnología: Interfaz Web (Frontend responsivo para celulares y PC), Servidor Backend, Base de Datos para inventario en tiempo real.",
                 ],
               },
             ],
           },
           {
-            subtitulo: "CU2 – Aprobar Presupuesto y Registrar Pedido",
+            subtitulo: "Caso de Uso 2: Aprobar Presupuesto y Registrar Pedido",
             items: [
-              "Actor Principal: Cliente – Autogestión (Subsistema: Gestión y Registro de Pedidos).",
-              "Precondición: Existe un presupuesto web vigente emitido previamente (dentro de las 72 horas).",
-              "Postcondición: Pedido en estado 'Confirmado / Pendiente de preparación' con reserva lógica sobre el stock.",
+              "Actor principal: Cliente (Autogestión) (Representación de el subsistema de Gestión y Registro de Pedidos).",
+              "Precondiciones: Existe un presupuesto web vigente emitido previamente para el cliente en referencia al caso 1.",
+              'Postcondiciones: El estado del pedido se actualiza a "Confirmado / Pendiente de preparación". Se establece una reserva lógica sobre el stock.',
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Gestión y Registro de Pedidos.",
+                  "Representación de el subsistema de Gestión y Registro de Pedidos.",
+                  "Nombre: Aprobar Presupuesto y Registrar Pedido.",
                   "Actor principal: Cliente (Autogestión).",
-                  "Precondiciones: Existe un presupuesto web vigente emitido previamente en el Caso de Uso 1.",
-                  "Postcondiciones: El estado del pedido se actualiza a 'Confirmado / Pendiente de preparación' y se establece una reserva lógica sobre el stock.",
+                  "Precondiciones: Existe un presupuesto web vigente emitido previamente para el cliente en referencia al caso 1.",
+                  'Postcondiciones: El estado del pedido se actualiza a "Confirmado / Pendiente de preparación". Se establece una reserva lógica sobre el stock.',
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Cliente aprueba la cotización vigente.",
-                  "2. El Sistema solicita definir la modalidad de entrega y los datos de pago.",
-                  "3. El Cliente selecciona modalidad (Retiro personal o Fletero externo) e ingresa los datos del comprobante de pago.",
-                  "4. El Sistema verifica y reserva lógicamente el stock en la BD 'Inventario'.",
-                  "5. El Sistema emite la Orden de Pedido Confirmado con su código único de seguimiento.",
+                  "1. Este caso de uso comienza cuando el Cliente aprueba la cotización.",
+                  "2. El sistema solicita definir la modalidad de entrega y los datos de pago.",
+                  "3. El Cliente selecciona la modalidad de entrega e ingresa los datos del comprobante de pago.",
+                  '4. El sistema verifica y reserva lógicamente el stock en el sistema de datos "Inventario".',
+                  "5. El sistema emite la Orden de Pedido Confirmado con su código de seguimiento.",
+                  "6. Finaliza la aprobación de presupuesto y registro del pedido.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "1a. Presupuesto vencido: Si caducó el plazo de validez (72 hs), el sistema exige generar una nueva cotización.",
-                  "Contingencia técnica: Ante falla de conectividad o energía, conserva los datos seleccionados hasta restablecerse el servicio.",
-                  "Requisitos y Tecnología: Alta confiabilidad en concurrencia de datos mediante motor relacional con transacciones seguras (ACID).",
+                  "Flujo alternativo — 1a. Presupuesto vencido: Si el plazo de validez de la oferta caducó, el sistema exige generar una nueva cotización.",
+                  "Flujo alternativo — Falla de conectividad/energía: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Requisitos especiales: Alta confiabilidad en la concurrencia de datos para evitar que dos clientes reserven el mismo stock físico simultáneamente.",
+                  "Lista de tecnología: Motor de base de datos relacional con manejo de transacciones seguras (ACID).",
                 ],
               },
             ],
           },
           {
-            subtitulo: "CU3 – Gestionar Preparación en Depósito",
+            subtitulo: "Caso de Uso 3: Gestionar Preparación en Depósito",
             items: [
-              "Actor Principal: Personal de Depósito (Subsistema: Control de Stock y Preparación).",
-              "Precondición: Existe al menos un pedido en estado 'Confirmado / Pendiente de preparación'.",
-              "Postcondición: Pedido pasa a 'Listo para retiro' y se emite el Remito Interno / Ficha de Preparación.",
+              "Actor principal: Personal de Depósito (Representa la operatoria del subsistema de Control de Stock y Preparación).",
+              'Precondiciones: Existe al menos un pedido en estado "Confirmado / Pendiente de preparación" habilitado para prepararse.',
+              'Postcondiciones: El estado del pedido cambia a "Listo para retiro" y se genera el Remito Interno / Ficha de Preparación.',
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Control de Stock y Preparación en Depósito.",
+                  "Representa la operatoria del subsistema de Control de Stock y Preparación.",
+                  "Nombre: Gestionar Preparación en Depósito.",
                   "Actor principal: Personal de Depósito.",
-                  "Precondiciones: Existe al menos un pedido en estado 'Confirmado / Pendiente de preparación' habilitado para prepararse.",
-                  "Postcondiciones: El estado del pedido cambia a 'Listo para retiro' y se genera el Remito Interno / Ficha de Preparación.",
+                  'Precondiciones: Existe al menos un pedido en estado "Confirmado / Pendiente de preparación" habilitado para prepararse.',
+                  'Postcondiciones: El estado del pedido cambia a "Listo para retiro" y se genera el Remito Interno / Ficha de Preparación.',
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Personal de Depósito consulta los pedidos pendientes de la sucursal.",
-                  "2. El Sistema retorna la lista de pedidos en estado 'Confirmado'.",
+                  "1. Este caso de uso comienza cuando el Personal de Depósito consulta los pedidos pendientes de la sucursal.",
+                  '2. El sistema retorna la lista de pedidos en estado "Confirmado".',
                   "3. El Personal de Depósito inicia la preparación de un pedido seleccionado.",
-                  "4. El Sistema actualiza y confirma el estado a 'En Preparación'.",
-                  "5. Finalizado el picking físico, el operario marca el pedido como 'Listo para retiro'.",
-                  "6. El Sistema retorna la Ficha de Preparación interna.",
+                  '4. El sistema confirma el estado actualizado a "En Preparación".',
+                  '5. El Personal de Depósito marca el pedido como "Listo para retiro".',
+                  "6. El sistema retorna la Ficha de Preparación interna.",
+                  "7. Finaliza la preparación del depósito.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "4a. Diferencia de inventario: Si hay daños o faltantes físicos, el operario notifica la irregularidad y pausa el pedido.",
-                  "Contingencia técnica: Resguardo de estado ante cortes de conectividad Wi-Fi o energía en el almacén.",
-                  "Requisitos y Tecnología: Interfaz operativa simplificada para dispositivos móviles/tablets en depósito conectados por red Wi-Fi local.",
+                  "Flujo alternativo — 4a. Diferencia de inventario: Si al buscar el producto físicamente hay daños o faltantes, el operario notifica la irregularidad en el sistema, pausando el pedido.",
+                  "Flujo alternativo — Falla de conectividad/energía: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Requisitos especiales: Interfaz simplificada y con botones accesibles para ser utilizada operativamente en el almacén.",
+                  "Lista de tecnología: Dispositivos móviles/Tablets en el depósito, red WiFi local conectada al servidor central.",
                 ],
               },
             ],
           },
           {
-            subtitulo: "CU4 – Registrar Retiro y Despacho",
+            subtitulo: "Caso de Uso 4: Registrar Retiro y Despacho",
             items: [
-              "Actor Principal: Personal de Depósito (Etapa final logística).",
-              "Precondición: Pedido en estado 'Listo para retiro' y documentación comercial aprobada.",
-              "Postcondición: Pedido pasa a 'Entregado', se emite Remito Comercial y se descuenta stock definitivamente.",
+              "Actor principal: Personal de Depósito (Representa la etapa final logística).",
+              'Precondiciones: El pedido se encuentra "Listo para retiro" y la documentación comercial (pago/facturación) está aprobada.',
+              'Postcondiciones: El pedido cambia a estado "Entregado". El inventario se descuenta definitivamente.',
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Control de Stock y Despacho Logístico.",
+                  "Representa la etapa final logística.",
+                  "Nombre: Registrar Retiro y Despacho.",
                   "Actor principal: Personal de Depósito.",
-                  "Precondiciones: El pedido se encuentra en estado 'Listo para retiro' y la documentación comercial (pago/facturación) está aprobada.",
-                  "Postcondiciones: El pedido cambia a 'Entregado', se emite el Remito Comercial y el inventario se descuenta definitivamente.",
+                  'Precondiciones: El pedido se encuentra "Listo para retiro" y la documentación comercial (pago/facturación) está aprobada.',
+                  'Postcondiciones: El pedido cambia a estado "Entregado". El inventario se descuenta definitivamente.',
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Personal de Depósito busca el pedido ingresando el código de seguimiento.",
-                  "2. El Sistema muestra la validación del pedido y el comprobante comercial asociado.",
-                  "3. El operario registra la entrega y el despacho ingresando los datos del receptor (cliente o fletero externo).",
-                  "4. El Sistema descuenta el stock de forma definitiva, emite el Remito Comercial y confirma el estado 'Entregado'.",
+                  "1. Este caso de uso comienza cuando el Personal de Depósito busca el pedido ingresando el código de seguimiento.",
+                  "2. El sistema muestra la validación del pedido y el comprobante asociado.",
+                  "3. El Personal de Depósito registra la entrega y el despacho, ingresando los datos del receptor.",
+                  '4. El sistema descuenta el stock de forma definitiva, emite el Remito Comercial y confirma el estado del pedido a "Entregado".',
+                  "5. Finaliza el registro del retiro y despacho.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "1a. Documentación inválida: Si el fletero o cliente no posee el comprobante aprobado requerido, el sistema alerta para denegar la entrega.",
-                  "Contingencia técnica: Conservación de operación ante interrupciones de red o suministro eléctrico.",
-                  "Requisitos y Tecnología: Trazabilidad estricta (fecha, hora y operario responsable) con soporte para lectores de códigos de barras o QR.",
+                  "Flujo alternativo — 1a. Documentación inválida: Si el fletero no posee el remito o comprobante requerido, el sistema alerta al operario para denegar la entrega.",
+                  "Flujo alternativo — Falla de conectividad/energía: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Requisitos especiales: Trazabilidad estricta (registrar fecha, hora y operario que realiza la entrega).",
+                  "Lista de tecnología: Sistema web backend, Lectores de Códigos de Barras o QR (opcional).",
                 ],
               },
             ],
           },
           {
-            subtitulo: "CU5 – Consultar Estado de Pedido",
+            subtitulo: "Caso de Uso 5: Consultar Estado de Pedido",
             items: [
-              "Actor Principal: Cliente (Subsistema: Seguimiento logístico web).",
-              "Precondición: El cliente posee el código de seguimiento generado al confirmar su pedido.",
-              "Postcondición: Se despliega el estado logístico actual y el detalle de materiales del pedido.",
+              "Actor principal: Cliente (Representa el subsistema de seguimiento logístico para el cliente).",
+              "Precondiciones: El cliente debe poseer el código de seguimiento generado tras la confirmación de su pedido.",
+              "Postcondiciones: El sistema despliega el estado logístico actual y el detalle del pedido.",
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Seguimiento Logístico para el Cliente.",
+                  "Representa el subsistema de seguimiento logístico para el cliente.",
+                  "Nombre: Consultar Estado de Pedido.",
                   "Actor principal: Cliente.",
-                  "Precondiciones: El cliente posee el código de seguimiento generado tras la confirmación de su pedido.",
-                  "Postcondiciones: El sistema despliega el estado logístico actual y el detalle de materiales del pedido.",
+                  "Precondiciones: El cliente debe poseer el código de seguimiento generado tras la confirmación de su pedido.",
+                  "Postcondiciones: El sistema despliega el estado logístico actual y el detalle del pedido.",
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Cliente ingresa a la sección de seguimiento web.",
-                  "2. El Sistema solicita el ingreso del código de seguimiento.",
+                  "1. El caso de uso comienza cuando el Cliente ingresa a la sección de seguimiento web.",
+                  "2. El sistema solicita el ingreso del código de seguimiento.",
                   "3. El Cliente ingresa el código y presiona buscar.",
-                  "4. El Sistema valida el código en la base de datos 'Pedidos'.",
-                  "5. El Sistema retorna el estado actual ('Confirmado', 'En Preparación', 'Listo para Retiro' o 'Entregado') junto con el detalle de materiales.",
+                  '4. El sistema valida el código en la base de datos "Pedidos".',
+                  '5. El sistema retorna el estado actual ("Confirmado", "En Preparación", "Listo para Retiro" o "Entregado") junto con el detalle de los materiales.',
+                  "6. Finaliza la consulta de estado.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "4a. Código inválido: Si el código no existe o es incorrecto, el sistema informa el error y solicita reingresarlo.",
-                  "Contingencia técnica: Retoma de consulta al restablecerse conectividad o energía.",
-                  "Requisitos y Tecnología: Interfaz intuitiva pública (sin login) y tiempos mínimos de respuesta en consulta sobre BD.",
+                  "Flujo alternativo — 4a. Código inválido: Si el código no existe o es incorrecto, el sistema informa el error y solicita reingresarlo.",
+                  "Flujo alternativo — Falla de conectividad/energía: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Requisitos especiales: Interfaz intuitiva y tiempos de respuesta mínimos en la búsqueda de la base de datos.",
+                  "Lista de tecnología: Interfaz Web (Frontend responsivo), Servidor Backend, Base de Datos.",
                 ],
               },
             ],
           },
           {
-            subtitulo: "CU6 – Gestionar Catálogo e Inventario",
+            subtitulo: "Caso de Uso 6: Gestionar Catálogo e Inventario",
             items: [
-              "Actor Principal: Personal de Ventas / Administrador (Módulo administrativo de Intranet).",
-              "Precondición: Usuario autenticado en la Intranet con permisos de edición.",
-              "Postcondición: Se actualizan precios y existencias disponibles en el catálogo público.",
+              "Actor principal: Personal de Ventas / Administrador (Representa el módulo administrativo para actualizar la tienda web).",
+              "Precondiciones: El usuario debe estar logueado en la Intranet con permisos de edición.",
+              "Postcondiciones: Se actualizan permanentemente los precios y las cantidades de stock en el catálogo público.",
             ],
             modalSecciones: [
               {
-                titulo:
-                  "Ficha Técnica (Actor, Precondiciones y Postcondiciones)",
+                titulo: "Encabezado, Precondiciones y Postcondiciones",
                 destacado: false,
                 items: [
-                  "Subsistema: Administración de Catálogo e Inventario.",
+                  "Representa el módulo administrativo para actualizar la tienda web.",
+                  "Nombre: Gestionar Catálogo e Inventario.",
                   "Actor principal: Personal de Ventas / Administrador.",
                   "Precondiciones: El usuario debe estar logueado en la Intranet con permisos de edición.",
-                  "Postcondiciones: Se actualizan permanentemente los precios y las cantidades de stock disponible en el catálogo público.",
+                  "Postcondiciones: Se actualizan permanentemente los precios y las cantidades de stock en el catálogo público.",
                 ],
               },
               {
-                titulo: "Flujo Normal de Eventos (Escenario de Éxito)",
+                titulo: "Escenario de éxito",
                 destacado: true,
                 items: [
-                  "1. El Administrador ingresa al módulo de gestión de catálogo.",
-                  "2. El Sistema despliega la tabla con los materiales, stocks y precios actuales.",
-                  "3. El Administrador modifica los precios o el stock disponible y hace clic en guardar.",
-                  "4. El Sistema valida que los datos ingresados sean valores numéricos no negativos.",
-                  "5–6. El Sistema actualiza los registros en la BD 'Inventario' y emite confirmación de éxito.",
+                  "1. El caso de uso comienza cuando el Administrador ingresa al módulo de gestión de catálogo.",
+                  "2. El sistema despliega la tabla con los materiales, stocks y precios actuales.",
+                  "3. El Administrador modifica los precios o el stock disponible de los artículos deseados y hace clic en guardar.",
+                  "4. El sistema valida que los datos ingresados sean correctos (valores numéricos positivos).",
+                  '5. El sistema actualiza los registros en la base de datos "Inventario".',
+                  "6. El sistema emite un mensaje de confirmación de éxito.",
+                  "7. Finaliza la actualización.",
                 ],
               },
               {
-                titulo: "Extensiones, Contingencia y Tecnología",
+                titulo:
+                  "Flujo alternativo, Requisitos especiales y Lista de tecnología",
                 destacado: false,
                 items: [
-                  "4a. Datos inválidos: Si se ingresan valores negativos o texto en campos numéricos, el sistema rechaza la operación y muestra alerta.",
-                  "Contingencia técnica: Conservación de edición pendiente ante caídas de red o energía.",
-                  "Requisitos y Tecnología: Control de acceso y sesiones activas para evitar modificaciones no autorizadas; panel Backend y BD relacional.",
+                  "Flujo alternativo — 4a. Datos inválidos: Si se ingresan valores negativos o texto en campos numéricos, el sistema rechaza la operación y muestra una alerta.",
+                  "Flujo alternativo — Falla de conectividad/energía: El sistema falla, se pierde la conectividad o la energía eléctrica: conserva lo ya seleccionado y se retoma al restablecerse el servicio.",
+                  "Requisitos especiales: Control de acceso y sesiones para evitar modificaciones no autorizadas.",
+                  "Lista de tecnología: Panel de control Backend, Base de Datos Relacional.",
                 ],
               },
             ],
@@ -551,8 +571,96 @@ const FASES = {
     titulo: "2. Fase de Elaboración",
     expositor: "Bloque 2",
     subtitulo:
-      "Modelado conceptual, secuencias, contratos, estados, análisis BCE y viabilidad",
+      "Subsistemas y bloques, modelado conceptual, secuencias, contratos, estados, análisis BCE y viabilidad",
     temas: [
+      {
+        nombre: "Subsistemas y Bloques",
+        bloques: [
+          {
+            subtitulo: "Sistema General y Cuadro RUP (Visión)",
+            items: [
+              "Sistema Global: Sistema Web de Cotización, Gestión de Pedidos y Distribución de Material.",
+              "Solución RUP: autogestión de clientes, reserva de stock en tiempo real y trazabilidad Ventas–Depósito.",
+            ],
+            modalSecciones: [
+              {
+                titulo: "Definición del Problema / Oportunidad (Cuadro RUP)",
+                destacado: false,
+                items: [
+                  "El problema: Confección manual de presupuestos y comunicación informal por WhatsApp/teléfono entre Ventas y Depósito.",
+                  "A quién afecta: Ventas (Mayoristas, Minoristas y Atención al Cliente), Almacén e Inventario, Transporte y Clientes.",
+                  "Solución adecuada: Plataforma web de autogestión conectada en tiempo real con el inventario de Tucumán y Salta.",
+                  "Impacto / Beneficio: Eliminación de cuellos de botella en horarios pico, reducción de errores de cálculo y trazabilidad del retiro.",
+                ],
+              },
+              {
+                titulo: "Roles y Stakeholders del Sistema",
+                destacado: true,
+                items: [
+                  "Usuarios Directos: Cliente (portal web), Personal de Ventas / Administrador (catálogo y seguimiento) y Personal de Depósito (picking y despacho).",
+                  "Usuarios Indirectos y Ambiente: Personal de Administración (consulta de comprobantes); Transportista / Fletero externo (entidad física externa que no opera el software).",
+                ],
+              },
+            ],
+          },
+          {
+            subtitulo: "Descomposición en 4 Subsistemas",
+            items: [
+              "Frente Comercial (Web): 1. Gestión de Catálogo y Cotización Web | 2. Gestión y Registro de Pedidos.",
+              "Frente Operativo (Intranet): 3. Control de Stock y Preparación en Depósito | 4. Gestión de Consultas y Comprobantes.",
+            ],
+            modalSecciones: [
+              {
+                titulo: "Subsistemas Comerciales (Autogestión del Cliente)",
+                destacado: false,
+                items: [
+                  "1. Gestión de Catálogo y Cotización Web (CU1): Consulta de precios y disponibilidad física por sucursal, cálculo automático y emisión de Presupuesto Web válido por 72 hs.",
+                  "2. Gestión y Registro de Pedidos (CU2): Aprobación de cotización vigente, elección de Retiro Personal o Fletero Externo, registro de pago y reserva lógica de stock.",
+                ],
+              },
+              {
+                titulo: "Subsistemas Operativos y de Control (Intranet)",
+                destacado: true,
+                items: [
+                  "3. Control de Stock y Preparación en Depósito (CU3 y CU4): Gestión de cola de pedidos confirmados, emisión de Hoja de Preparación, validación documental y baja definitiva de stock.",
+                  "4. Gestión de Consultas y Comprobantes (CU5 y CU6): Seguimiento público de pedidos por código, actualización de precios/existencias y consulta de comprobantes para Administración.",
+                ],
+              },
+            ],
+          },
+          {
+            subtitulo: "Diagrama de Bloques y Almacenes de Datos",
+            items: [
+              "4 Almacenes de Datos: Presupuestos, Productos e Inventario, Pedidos y Ventas.",
+              "Salidas emitidas: Presupuesto Web (Cliente), Hoja de Preparación (Depósito) y Comprobantes (Administración).",
+            ],
+            modalSecciones: [
+              {
+                titulo: "Arquitectura de Almacenes de Datos",
+                destacado: false,
+                items: [
+                  "Productos e Inventario: Consultado en tiempo real al cotizar (Subsistema 1), actualizado con reserva lógica al confirmar (Subsistema 2) y descontado al despachar (Subsistema 3).",
+                  "Presupuestos, Pedidos y Ventas: Persisten el ciclo completo desde la oferta preliminar de 72 hs hasta la orden confirmada, el pago y el remito comercial.",
+                ],
+              },
+              {
+                titulo: "Lectura de Flujos en el Diagrama de Bloques",
+                destacado: true,
+                items: [
+                  "Salidas externas del sistema: Los artefactos Presupuesto Web (hacia Cliente), Hoja de Preparación (hacia Depósito) y Comprobantes (hacia Administración) representan información emitida por los subsistemas hacia cada interesado.",
+                  "Cohesión funcional: Cada bloque agrupa operaciones con alta afinidad de datos y separa la interfaz pública del cliente respecto de la operación interna del almacén.",
+                ],
+              },
+            ],
+          },
+        ],
+        imagenes: [
+          {
+            src: "/diagramas/bloques.jpg",
+            pie: "Diagrama de Bloques – Subsistemas y Almacenes de Datos",
+          },
+        ],
+      },
       {
         nombre: "Modelo del Dominio",
         bloques: [
@@ -1221,53 +1329,117 @@ const FASES = {
         nombre: "Viabilidad y Gantt",
         bloques: [
           {
-            subtitulo: "Viabilidad Técnica, Operacional y Riesgos",
+            subtitulo: "Viabilidad Técnica (Hardware y Software)",
             items: [
-              "Hardware y Software: 5 PCs, 4 lectores QR/barras, 2 impresoras láser, Wi-Fi en depósito, Cloud AWS, React + Node.js.",
-              "Operacional: alta predisposición del personal relevada en Fase 1 y curva de aprendizaje corta.",
+              "Hardware ($7.290.000): 5 PCs ($6.000.000), 2 impresoras láser ($500.000), 4 lectores QR/barras ($340.000), Cloud AWS ($300.000) y routers Wi-Fi ($150.000).",
+              "Software ($725.000): 5 licencias Windows 11 Pro ($600.000), 5 ESET Endpoint ($125.000) y React + Node.js Open Source ($0).",
             ],
             modalSecciones: [
               {
-                titulo: "Recursos de Hardware y Software (Viabilidad Técnica)",
+                titulo:
+                  "Recursos de Hardware (Proveedor, Garantía y Costos Exactos)",
                 destacado: false,
                 items: [
-                  "Entrada y Salida: 4 Lectores QR/Barras (validación de remitos en depósito) y 2 Impresoras láser/térmicas (comprobantes y fichas de preparación).",
-                  "Procesamiento y Almacenamiento: 5 PCs de escritorio (SSD 512 GB, Windows 11 Pro, ESET Endpoint) + Servidor Cloud AWS/Google Cloud con backups automáticos.",
-                  "Stack y Comunicaciones: JavaScript/TypeScript (React en Frontend y Node.js en Backend), Internet de banda ancha y red Wi-Fi dedicada en depósito.",
+                  "Tecnologías de Entrada: 4 Lectores de Códigos de Barras/QR ($85.000 c/u = $340.000 – Intelex S.A., 2 años de garantía), teclados y mouses estándar.",
+                  'Tecnologías de Salida: 2 Impresoras láser/térmicas ($250.000 c/u = $500.000 – Intelex S.A., 1 año de garantía) y monitores de 24".',
+                  "Procesamiento y Almacenamiento: 5 PC de escritorio con SSD 512 GB ($1.200.000 c/u = $6.000.000 – Intelex S.A., 3 años de garantía) + Infraestructura Cloud Hosting AWS ($300.000 anual, soporte 24/7, backups automatizados).",
+                  "Comunicaciones: Internet de banda ancha (ISP) y Routers Wi-Fi internos en depósito ($150.000 – Cisco local, 1 año de garantía).",
                 ],
               },
               {
-                titulo: "Viabilidad Operacional y Matriz de Riesgos (Pressman)",
+                titulo: "Recursos de Software (Licencias y Stack Tecnológico)",
                 destacado: true,
                 items: [
-                  "Adopción operacional: El personal ya opera sistemas de gestión (ERP actuales) y manifestó en entrevistas necesidad de eliminar presupuestos manuales y cruces por WhatsApp.",
-                  "Riesgos identificados: Tecnológico (caídas de cloud o Wi-Fi en depósito), Profesional (resistencia a dejar el papel), Organizacional (demoras de validación), Requerimientos (cambios en reglas de precios) y Herramientas (compatibilidad de lectores QR).",
+                  "Sistema Operativo: Windows 11 Pro — $120.000 × 5 licencias permanentes = $600.000.",
+                  "Seguridad: Antivirus ESET Endpoint Security Corporativo — $25.000 × 5 licencias (1 año) = $125.000.",
+                  "Desarrollo: Lenguajes JavaScript / TypeScript con React (Frontend) y Node.js (Backend) — $0 (Open Source).",
                 ],
               },
             ],
           },
           {
-            subtitulo: "Viabilidad Económica, Gantt y Marco UP",
+            subtitulo: "Viabilidad Económica (Personal e Inversión Total)",
             items: [
-              "Inversión total: Hardware $7.290.000 + Software $725.000 + Equipo de desarrollo $9.300.000 ($17.315.000).",
-              "Cronograma en GanttProject (18/05/2026 al 25/11/2026) y Matriz de Disciplinas UP (c = comenzar, r = refinar).",
+              "Equipo de Desarrollo ($9.300.000): Gestor ($2.5M / 480 hs), Analista ($1.8M / 480 hs), 2 Desarrolladores ($3.0M / 240 hs) y Arquitecto de sistemas / BD ($2.0M / 320 hs).",
+              "Inversión Total del Proyecto: $17.315.000 (Capacitación a 5 usuarios finales: $0, incluida en sueldo).",
             ],
             modalSecciones: [
               {
-                titulo: "Presupuesto Detallado de Inversión",
+                titulo:
+                  "2.3 - Estimación de Costo de Personal (Desglose por Hora y Tiempo)",
                 destacado: false,
                 items: [
-                  "Hardware ($7.290.000): 5 PCs ($6.000.000), 2 Impresoras láser ($500.000), 4 Lectores QR/Barras ($340.000), Cloud AWS anual ($300.000) y Routers Wi-Fi ($150.000).",
-                  "Software ($725.000): 5 licencias Windows 11 Pro ($625.000), 5 licencias ESET Corporativo ($100.000) y React/Node.js Open Source ($0).",
-                  "Equipo de Desarrollo ($9.300.000): Gestor de Proyecto ($2.500.000 / 3 meses), Analista ($1.800.000 / 3 meses), 2 Desarrolladores ($3.000.000 / 3 meses) y Arquitecto BD ($2.000.000 / 2 meses).",
+                  "Gestor de Proyecto: $2.500.000 — 480 hs (160 hs/mes) / $5.208,33 por hora — Cantidad: 1 — Tiempo: 3 meses.",
+                  "Análisis de sistemas: $1.800.000 — 480 hs (160 hs/mes) / $3.750,00 por hora — Cantidad: 1 — Tiempo: 3 meses.",
+                  "Desarrolladores: $1.500.000 c/u ($3.000.000 total) — 120 hs c/u (240 hs total) / $10.000,00 por hora — Cantidad: 2 — Tiempo: 3 meses.",
+                  "Arquitecto de sistemas / BD: $2.000.000 — 320 hs (160 hs/mes) / $6.250,00 por hora — Cantidad: 1 — Tiempo: 2 meses.",
+                  "Usuarios Finales (5 empleados de Ventas y Depósito – 2 semanas de capacitación): $0 (incluido en sueldo).",
                 ],
               },
               {
-                titulo: "Cronograma Gantt y Marco de Desarrollo UP",
+                titulo: "Resumen Consolidado de Inversión",
                 destacado: true,
                 items: [
-                  "Fases en GanttProject: Inicio (18/05 – 23/09), Elaboración (24/09 – 18/11), Construcción (05/11 – 19/11) y Transición (13/11 – 25/11).",
-                  "Disciplinas UP: Requisitos y Entorno comienzan (c) en Inicio y se refinan (r) en Elaboración; Modelado del Dominio y Análisis se ejecutan en Elaboración; Implementación y Pruebas evolucionan hasta Construcción.",
+                  "Subtotal Hardware: $7.290.000 | Subtotal Software: $725.000 | Subtotal Personal: $9.300.000.",
+                  "Inversión Total Estimada: $17.315.000, recuperable mediante reducción de tiempos operativos, eliminación de errores de cotización y mayor atención simultánea.",
+                ],
+              },
+            ],
+          },
+          {
+            subtitulo: "Viabilidad Operacional y Matriz de Riesgos",
+            items: [
+              "Operacional: alta predisposición del personal relevada en Fase 1 y experiencia previa con ERP (curva corta con tutoriales).",
+              "Riesgos (5 categorías): Tecnológico, Personal, Organizacional, Requerimientos y Herramientas.",
+            ],
+            modalSecciones: [
+              {
+                titulo: "Factibilidad Operacional (Adopción y Capacitación)",
+                destacado: false,
+                items: [
+                  "Predisposición de usuarios: En las entrevistas de Fase 1, Ventas y Depósito manifestaron la necesidad de eliminar presupuestos manuales y cruces informales por WhatsApp.",
+                  "Capacitación: El personal ya opera sistemas de gestión (ERP actuales); no requiere cursos formales extensos, solo demos y tutoriales guiados durante 2 semanas en Transición.",
+                ],
+              },
+              {
+                titulo: "Estudio de Riesgos del Proyecto (5 Categorías)",
+                destacado: true,
+                items: [
+                  "Tecnológico: Caídas temporales del servidor en la nube o fallas de conectividad Wi-Fi en depósito que impidan leer remitos.",
+                  "Personal: Resistencia del personal de depósito a abandonar el registro físico en papel.",
+                  "Organizacional: Demoras en la toma de decisiones de la gerencia de Rosso Hnos. S.A. durante la validación.",
+                  "Requerimientos: Cambios en la lógica de precios (mayoristas vs. minoristas) en etapa de Construcción.",
+                  "Herramientas: Incompatibilidad temporal entre los lectores QR adquiridos y el módulo frontend del depósito.",
+                ],
+              },
+            ],
+          },
+          {
+            subtitulo: "Calendario Gantt y Marco de Desarrollo UP",
+            items: [
+              "Gantt Completo (4 Fases): abarca desde relevamiento y modelado hasta desarrollo, hardware, capacitación y puesta en marcha.",
+              "Matriz UP: Requisitos y Entorno (c Inicio / r Elaboración); Dominio y Análisis (c Elaboración).",
+            ],
+            modalSecciones: [
+              {
+                titulo: "Estructura de Tareas del Diagrama de Gantt",
+                destacado: false,
+                items: [
+                  "Fase de Inicio: Relevamiento y elicitación (entrevistas), modelado BPD, Documento de la Empresa y Documento Visión.",
+                  "Fase de Elaboración: Especificación Complementaria y Glosario, Casos de Uso y prototipos, Modelo del Dominio y Análisis, DSS y Contratos, Transición de Estados y Estudio de Viabilidad.",
+                  "Fase de Construcción: Desarrollo Frontend y Backend, integración del cotizador y gestión de stock, pruebas de validación (testing).",
+                  "Fase de Transición: Manuales de usuario, instalación de hardware en sucursales y depósito, capacitación al personal (2 semanas) y puesta en marcha final.",
+                ],
+              },
+              {
+                titulo:
+                  "Matriz de Disciplinas del Proceso Unificado (c = comenzar / r = refinar)",
+                destacado: true,
+                items: [
+                  "Modelado del negocio: Modelo del dominio (c en Elaboración).",
+                  "Requisitos: Casos de uso, Visión, Especificación complementaria y Glosario (c en Inicio, r en Elaboración).",
+                  "Análisis y diseño: Modelo del análisis (c en Elaboración) | Pruebas: Modelo de Prueba (c en Elaboración, r en Construcción).",
+                  "Implementación: Modelo de implementación (c en Elaboración, r en Construcción y Transición) | Gestión: Plan de desarrollo (c en Inicio, r en Elaboración, Construcción y Transición) e Informe de viabilidad (c en Inicio).",
                 ],
               },
             ],
